@@ -71,9 +71,10 @@
             </button>
         </div>
 
-        <!-- Category Filters -->
+        <!-- Category + Brand Filters -->
         <div class="category-filters" id="categoryFilters">
             <button class="cat-pill active" data-cat="all" data-i18n="cat.all">All</button>
+            <button class="cat-pill" data-cat="kitty" data-i18n="cat.kitty">🐾 Kitty Originals</button>
             <button class="cat-pill" data-cat="chains" data-i18n="cat.chains">Chains &amp; Drivetrain</button>
             <button class="cat-pill" data-cat="brakes" data-i18n="cat.brakes">Brakes</button>
             <button class="cat-pill" data-cat="tires" data-i18n="cat.tires">Wheels &amp; Tires</button>
@@ -90,6 +91,9 @@
                 <p data-i18n="shop.noResults.text">Try a different search or category</p>
             </div>
         </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
     </div>
 
     <!-- CART DRAWER -->
@@ -131,70 +135,96 @@
     <script src="lang.js"></script>
     <script>
         // ═══════════════════════════════════════════════════════════════════
-        //  PRODUCT CATALOG
-        //  ─ priceARS: precio en pesos argentinos
-        //  ─ priceUSD: precio en dólares (independiente — podés ajustar libre)
-        //  ─ image: ruta a la imagen del producto. Si está vacío, usa el emoji.
-        //    Ejemplo: image: 'public/products/cadena-shimano-hg40.jpg'
+        //  PRODUCT CATALOG — TWO LINES
+        //  ─ Kitty Originals (k1-k12): Kitty's own house brand. Cute names.
+        //  ─ Real Brands    (r1-r23): Shimano, KMC, Maxxis, Schwalbe, etc.
+        //
+        //  Fields:
+        //  ─ priceARS / priceUSD: independent — adjust each freely
+        //  ─ image: path to product image. Empty string → falls back to emoji.
+        //  ─ kitty: true marks it as a Kitty Original (shows the paw badge +
+        //    matches the "🐾 Kitty Originals" filter)
         // ═══════════════════════════════════════════════════════════════════
         const products = [
-            // ── CHAINS & DRIVETRAIN ──
-            { id: 'p1',  cat: 'chains', emoji: '⛓️', image: '',
-              priceARS: 19500, priceUSD: 14, key: 'p1' },
-            { id: 'p2',  cat: 'chains', emoji: '⛓️', image: '',
-              priceARS: 18000, priceUSD: 13, key: 'p2' },
-            { id: 'p3',  cat: 'chains', emoji: '⚙️', image: '',
-              priceARS: 35000, priceUSD: 25, key: 'p3' },
-            { id: 'p4',  cat: 'chains', emoji: '🦷', image: '',
-              priceARS: 45000, priceUSD: 32, key: 'p4' },
+            // ──────────────── KITTY ORIGINALS ────────────────
+            { id: 'k1',  cat: 'chains',      kitty: true, emoji: '⛓️', image: '',
+              priceARS: 49500, priceUSD: 35, key: 'k1' },
+            { id: 'k2',  cat: 'chains',      kitty: true, emoji: '⚙️', image: '',
+              priceARS: 78000, priceUSD: 55, key: 'k2' },
+            { id: 'k3',  cat: 'brakes',      kitty: true, emoji: '🛑', image: '',
+              priceARS: 25500, priceUSD: 18, key: 'k3' },
+            { id: 'k4',  cat: 'tires',       kitty: true, emoji: '🛞', image: '',
+              priceARS: 59500, priceUSD: 42, key: 'k4' },
+            { id: 'k5',  cat: 'lights',      kitty: true, emoji: '💡', image: '',
+              priceARS: 41000, priceUSD: 29, key: 'k5' },
+            { id: 'k6',  cat: 'lights',      kitty: true, emoji: '🔦', image: '',
+              priceARS: 34000, priceUSD: 24, key: 'k6' },
+            { id: 'k7',  cat: 'lubes',       kitty: true, emoji: '🧴', image: '',
+              priceARS: 17000, priceUSD: 12, key: 'k7' },
+            { id: 'k8',  cat: 'lubes',       kitty: true, emoji: '🐟', image: '',
+              priceARS: 20000, priceUSD: 14, key: 'k8' },
+            { id: 'k9',  cat: 'accessories', kitty: true, emoji: '🔔', image: '',
+              priceARS: 11500, priceUSD: 8,  key: 'k9' },
+            { id: 'k10', cat: 'accessories', kitty: true, emoji: '🔒', image: '',
+              priceARS: 45500, priceUSD: 32, key: 'k10' },
+            { id: 'k11', cat: 'accessories', kitty: true, emoji: '🧤', image: '',
+              priceARS: 21500, priceUSD: 15, key: 'k11' },
+            { id: 'k12', cat: 'accessories', kitty: true, emoji: '🎀', image: '',
+              priceARS: 25500, priceUSD: 18, key: 'k12' },
 
-            // ── BRAKES ──
-            { id: 'p5',  cat: 'brakes', emoji: '🛑', image: '',
-              priceARS: 12000, priceUSD: 9, key: 'p5' },
-            { id: 'p6',  cat: 'brakes', emoji: '🛑', image: '',
-              priceARS: 8500,  priceUSD: 6, key: 'p6' },
-            { id: 'p7',  cat: 'brakes', emoji: '🤚', image: '',
-              priceARS: 22000, priceUSD: 16, key: 'p7' },
-
-            // ── WHEELS & TIRES ──
-            { id: 'p8',  cat: 'tires',  emoji: '🛞', image: '',
-              priceARS: 75000, priceUSD: 53, key: 'p8' },
-            { id: 'p9',  cat: 'tires',  emoji: '🛞', image: '',
-              priceARS: 95000, priceUSD: 67, key: 'p9' },
-            { id: 'p10', cat: 'tires',  emoji: '🛞', image: '',
-              priceARS: 32000, priceUSD: 23, key: 'p10' },
-            { id: 'p11', cat: 'tires',  emoji: '🎈', image: '',
-              priceARS: 8500,  priceUSD: 6, key: 'p11' },
-
-            // ── LIGHTS ──
-            { id: 'p12', cat: 'lights', emoji: '🔦', image: '',
-              priceARS: 85000, priceUSD: 60, key: 'p12' },
-            { id: 'p13', cat: 'lights', emoji: '💡', image: '',
-              priceARS: 38000, priceUSD: 27, key: 'p13' },
-            { id: 'p14', cat: 'lights', emoji: '🚨', image: '',
-              priceARS: 18000, priceUSD: 13, key: 'p14' },
-
-            // ── LUBRICANTS ──
-            { id: 'p15', cat: 'lubes',  emoji: '🧴', image: '',
-              priceARS: 15000, priceUSD: 11, key: 'p15' },
-            { id: 'p16', cat: 'lubes',  emoji: '🧽', image: '',
-              priceARS: 12000, priceUSD: 9, key: 'p16' },
-            { id: 'p17', cat: 'lubes',  emoji: '🛢️', image: '',
-              priceARS: 14000, priceUSD: 10, key: 'p17' },
-
-            // ── ACCESSORIES ──
-            { id: 'p18', cat: 'accessories', emoji: '🔒', image: '',
-              priceARS: 95000,  priceUSD: 67, key: 'p18' },
-            { id: 'p19', cat: 'accessories', emoji: '⛑️', image: '',
-              priceARS: 65000,  priceUSD: 46, key: 'p19' },
-            { id: 'p20', cat: 'accessories', emoji: '💨', image: '',
-              priceARS: 110000, priceUSD: 78, key: 'p20' },
-            { id: 'p21', cat: 'accessories', emoji: '🦶', image: '',
-              priceARS: 28000,  priceUSD: 20, key: 'p21' },
-            { id: 'p22', cat: 'accessories', emoji: '🥤', image: '',
-              priceARS: 22000,  priceUSD: 16, key: 'p22' },
-            { id: 'p23', cat: 'accessories', emoji: '🎀', image: '',
-              priceARS: 18000,  priceUSD: 13, key: 'p23' }
+            // ──────────────── REAL BRANDS ────────────────
+            // Chains & Drivetrain
+            { id: 'r1',  cat: 'chains', emoji: '⛓️', image: '',
+              priceARS: 19500, priceUSD: 14, key: 'r1' },
+            { id: 'r2',  cat: 'chains', emoji: '⛓️', image: '',
+              priceARS: 18000, priceUSD: 13, key: 'r2' },
+            { id: 'r3',  cat: 'chains', emoji: '⚙️', image: '',
+              priceARS: 35000, priceUSD: 25, key: 'r3' },
+            { id: 'r4',  cat: 'chains', emoji: '🦷', image: '',
+              priceARS: 45000, priceUSD: 32, key: 'r4' },
+            // Brakes
+            { id: 'r5',  cat: 'brakes', emoji: '🛑', image: '',
+              priceARS: 12000, priceUSD: 9, key: 'r5' },
+            { id: 'r6',  cat: 'brakes', emoji: '🛑', image: '',
+              priceARS: 8500,  priceUSD: 6, key: 'r6' },
+            { id: 'r7',  cat: 'brakes', emoji: '🤚', image: '',
+              priceARS: 22000, priceUSD: 16, key: 'r7' },
+            // Wheels & Tires
+            { id: 'r8',  cat: 'tires',  emoji: '🛞', image: '',
+              priceARS: 75000, priceUSD: 53, key: 'r8' },
+            { id: 'r9',  cat: 'tires',  emoji: '🛞', image: '',
+              priceARS: 95000, priceUSD: 67, key: 'r9' },
+            { id: 'r10', cat: 'tires',  emoji: '🛞', image: '',
+              priceARS: 32000, priceUSD: 23, key: 'r10' },
+            { id: 'r11', cat: 'tires',  emoji: '🎈', image: '',
+              priceARS: 8500,  priceUSD: 6, key: 'r11' },
+            // Lights
+            { id: 'r12', cat: 'lights', emoji: '🔦', image: '',
+              priceARS: 85000, priceUSD: 60, key: 'r12' },
+            { id: 'r13', cat: 'lights', emoji: '💡', image: '',
+              priceARS: 38000, priceUSD: 27, key: 'r13' },
+            { id: 'r14', cat: 'lights', emoji: '🚨', image: '',
+              priceARS: 18000, priceUSD: 13, key: 'r14' },
+            // Lubricants
+            { id: 'r15', cat: 'lubes',  emoji: '🧴', image: '',
+              priceARS: 15000, priceUSD: 11, key: 'r15' },
+            { id: 'r16', cat: 'lubes',  emoji: '🧽', image: '',
+              priceARS: 12000, priceUSD: 9, key: 'r16' },
+            { id: 'r17', cat: 'lubes',  emoji: '🛢️', image: '',
+              priceARS: 14000, priceUSD: 10, key: 'r17' },
+            // Accessories
+            { id: 'r18', cat: 'accessories', emoji: '🔒', image: '',
+              priceARS: 95000,  priceUSD: 67, key: 'r18' },
+            { id: 'r19', cat: 'accessories', emoji: '⛑️', image: '',
+              priceARS: 65000,  priceUSD: 46, key: 'r19' },
+            { id: 'r20', cat: 'accessories', emoji: '💨', image: '',
+              priceARS: 110000, priceUSD: 78, key: 'r20' },
+            { id: 'r21', cat: 'accessories', emoji: '🦶', image: '',
+              priceARS: 28000,  priceUSD: 20, key: 'r21' },
+            { id: 'r22', cat: 'accessories', emoji: '🥤', image: '',
+              priceARS: 22000,  priceUSD: 16, key: 'r22' },
+            { id: 'r23', cat: 'accessories', emoji: '🎀', image: '',
+              priceARS: 18000,  priceUSD: 13, key: 'r23' }
         ];
 
         // ═══════════════════════════════════════════════════════════════════
@@ -205,106 +235,154 @@
                 "nav.home":"HOME","nav.about":"ABOUT US","nav.contact":"CONTACT","nav.reserve":"BOOK SERVICE ▾","nav.onsite":"Onsite Service","nav.parts":"Parts Delivery","nav.callback":"Request Callback",
                 "shop.eyebrow":"PARTS DELIVERY","shop.tagline":"Real parts. Real quality. Delivered by very serious cats.",
                 "shop.search":"Search for parts...","shop.cart":"Cart",
-                "cat.all":"All","cat.chains":"Chains & Drivetrain","cat.brakes":"Brakes","cat.tires":"Wheels & Tires","cat.lights":"Lights","cat.lubes":"Lubricants","cat.accessories":"Accessories",
+                "cat.all":"All","cat.kitty":"🐾 Kitty Originals","cat.chains":"Chains & Drivetrain","cat.brakes":"Brakes","cat.tires":"Wheels & Tires","cat.lights":"Lights","cat.lubes":"Lubricants","cat.accessories":"Accessories",
                 "shop.noResults.title":"Nothing here, just dust bunnies","shop.noResults.text":"Try a different search or category",
                 "cart.your":"Your","cart.basket":"Basket","cart.subtotal":"Subtotal","cart.shipping":"Delivery (by cat)","cart.total":"Total","cart.checkout":"Checkout 🐾",
                 "cart.note.ars":"Free delivery for orders over $70.000. Cats included.",
                 "cart.note.usd":"Free delivery for orders over US$ 50. Cats included.",
                 "cart.empty.text":"Your basket is empty. Go pick something nice for your bike!",
                 "toast.added":"Added to your basket!",
-                "p1.name":"Shimano CN-HG40 Chain","p1.desc":"6/7/8-speed MTB & road chain. The cat-favorite — silent, smooth, and reliable.","p1.badge":"DRIVETRAIN",
-                "p2.name":"KMC X8 Chain","p2.desc":"8-speed chain with QuickLink. Lighter than HG40 — purr-fect for daily riders.","p2.badge":"DRIVETRAIN",
-                "p3.name":"Shimano HG200 Cassette 7v","p3.desc":"7-speed cassette 12-32T. Compatible with Tourney, Altus and most MTBs.","p3.badge":"CASSETTE",
-                "p4.name":"Shimano Altus Rear Derailleur","p4.desc":"RD-M310 7/8-speed rear derailleur. Smooth shifts, even with cat hair around.","p4.badge":"DERAILLEUR",
-                "p5.name":"Shimano B01S Disc Pads","p5.desc":"Resin disc brake pads. Stop on a dime. Or a mouse. Whichever comes first.","p5.badge":"DISC PADS",
-                "p6.name":"Shimano V-Brake Pads","p6.desc":"Standard V-brake pads, 70mm. Reliable, cheap, every cat keeps a spare set.","p6.badge":"V-BRAKE",
-                "p7.name":"Shimano Tourney Brake Levers","p7.desc":"BL-TX800 brake lever pair. Ergonomic, even for paws.","p7.badge":"LEVERS",
-                "p8.name":"Maxxis Ardent 27.5x2.25","p8.desc":"All-terrain MTB tire. Grippy enough to chase the laser pointer downhill.","p8.badge":"MTB TIRE",
-                "p9.name":"Schwalbe Marathon 700x35","p9.desc":"Legendary anti-puncture urban tire. Goes through anything except cat naps.","p9.badge":"URBAN TIRE",
-                "p10.name":"Vee Rubber Speedster 700x28","p10.desc":"Smooth, fast road tire. Affordable upgrade for daily commutes.","p10.badge":"ROAD TIRE",
-                "p11.name":"Schwalbe AV13 Tube","p11.desc":"Premium tube for 26\"/27.5\"/29\" — Schrader valve. The reliable backup.","p11.badge":"TUBE",
-                "p12.name":"Cateye Volt 100 Set","p12.desc":"USB rechargeable front + rear LED set. 100 lumens. Glows like real cat eyes.","p12.badge":"LIGHT SET",
-                "p13.name":"Knog Plus Front Light","p13.desc":"Compact silicone-strap LED. Magnetic USB charging. 4 modes.","p13.badge":"FRONT LIGHT",
-                "p14.name":"USB LED Rear Light","p14.desc":"Bright rear LED, USB-C rechargeable. Multiple flashing modes for safety.","p14.badge":"REAR LIGHT",
-                "p15.name":"Finish Line Dry Lube","p15.desc":"120ml Teflon dry chain lube. Makes your drivetrain purr — literally.","p15.badge":"CHAIN LUBE",
-                "p16.name":"WD-40 Bike Cleaner","p16.desc":"Degreaser & frame cleaner spray. Strips grease without harming paint.","p16.badge":"CLEANER",
-                "p17.name":"Park Tool PolyLube 1000","p17.desc":"Multi-purpose grease for bearings, hubs, and headsets. 113g tub.","p17.badge":"GREASE",
-                "p18.name":"Kryptonite KryptoLok U-Lock","p18.desc":"Hardened steel U-lock with 4-foot cable. Even raccoons can't crack it.","p18.badge":"U-LOCK",
-                "p19.name":"Bell Tracker Helmet","p19.desc":"Adult helmet with 19 vents. CPSC-certified. Cat-ear holes not included.","p19.badge":"HELMET",
-                "p20.name":"Topeak JoeBlow Sport","p20.desc":"Floor pump, max 160 PSI, dual-head Presta/Schrader. The pump cats endorse.","p20.badge":"FLOOR PUMP",
-                "p21.name":"Wellgo Platform Pedals","p21.desc":"Aluminum platform pedals with grip pins. Sealed bearings, 9/16\" thread.","p21.badge":"PEDALS",
-                "p22.name":"Elite Fly Bottle + Cage","p22.desc":"550ml bidon plus aluminum cage. BPA-free. Tested by very thirsty cats.","p22.badge":"HYDRATION",
-                "p23.name":"Velo Cork Bar Tape","p23.desc":"Cushioned cork road bar tape, set of 2. Comfortable for long rides.","p23.badge":"BAR TAPE"
+                "kitty.badge":"KITTY ORIGINAL",
+                "page.prev":"← Prev","page.next":"Next →",
+                // ── Kitty Originals ──
+                "k1.name":"Purr-fect Chain","k1.desc":"Smoothest chain in the litter. Won't squeak — promise.","k1.badge":"DRIVETRAIN",
+                "k2.name":"Furr-rolled Cassette","k2.desc":"11-speed cassette. Smoother gear changes than a cat stretch.","k2.badge":"CASSETTE",
+                "k3.name":"Whisker Brake Pads","k3.desc":"Stop on a dime. Or a mouse. Whichever comes first.","k3.badge":"BRAKES",
+                "k4.name":"Zoomie Tire 26\"","k4.desc":"Grippy enough to chase the laser pointer. All terrain.","k4.badge":"TIRE",
+                "k5.name":"Cat-Eye Light Set","k5.desc":"Front + rear LED set. Glows like real cat eyes at night.","k5.badge":"LIGHT",
+                "k6.name":"Lazer Pointer Light","k6.desc":"Ultra-bright front light. Confuses dogs in a 50m radius.","k6.badge":"LIGHT",
+                "k7.name":"Purr Lube","k7.desc":"Premium chain lube. Makes your bike purr — literally.","k7.badge":"LUBE",
+                "k8.name":"Tuna Tire Sealant","k8.desc":"Self-sealing fluid for tubeless tires. Smells like tuna. Sort of.","k8.badge":"SEALANT",
+                "k9.name":"Meow Bell","k9.desc":"Says \"meow\" instead of \"ring\". Scientifically cuter.","k9.badge":"BELL",
+                "k10.name":"Ninja Cat Lock","k10.desc":"Heavy-duty U-lock. Even raccoons can't crack it.","k10.badge":"LOCK",
+                "k11.name":"Pawful Grip Tape","k11.desc":"Handlebar tape with paw print pattern. Soft, sticky, cute.","k11.badge":"GRIP",
+                "k12.name":"Catnip Bar Wraps","k12.desc":"Bar wraps with a hint of catnip. Riders love them, cats love them more.","k12.badge":"GRIP",
+                // ── Real Brands ──
+                "r1.name":"Shimano CN-HG40 Chain","r1.desc":"6/7/8-speed MTB & road chain. Silent, smooth, and reliable.","r1.badge":"DRIVETRAIN",
+                "r2.name":"KMC X8 Chain","r2.desc":"8-speed chain with QuickLink. Lighter than HG40 — perfect for daily riders.","r2.badge":"DRIVETRAIN",
+                "r3.name":"Shimano HG200 Cassette 7v","r3.desc":"7-speed cassette 12-32T. Compatible with Tourney, Altus and most MTBs.","r3.badge":"CASSETTE",
+                "r4.name":"Shimano Altus Rear Derailleur","r4.desc":"RD-M310 7/8-speed rear derailleur. Smooth shifts on a budget.","r4.badge":"DERAILLEUR",
+                "r5.name":"Shimano B01S Disc Pads","r5.desc":"Resin disc brake pads. Quiet braking, replaceable in minutes.","r5.badge":"DISC PADS",
+                "r6.name":"Shimano V-Brake Pads","r6.desc":"Standard V-brake pads, 70mm. Reliable and cheap.","r6.badge":"V-BRAKE",
+                "r7.name":"Shimano Tourney Brake Levers","r7.desc":"BL-TX800 brake lever pair. Ergonomic and durable.","r7.badge":"LEVERS",
+                "r8.name":"Maxxis Ardent 27.5x2.25","r8.desc":"All-terrain MTB tire. Excellent grip on dirt and rock.","r8.badge":"MTB TIRE",
+                "r9.name":"Schwalbe Marathon 700x35","r9.desc":"Legendary anti-puncture urban tire. Bulletproof daily commuter.","r9.badge":"URBAN TIRE",
+                "r10.name":"Vee Rubber Speedster 700x28","r10.desc":"Smooth, fast road tire. Affordable upgrade for daily commutes.","r10.badge":"ROAD TIRE",
+                "r11.name":"Schwalbe AV13 Tube","r11.desc":"Premium tube for 26\"/27.5\"/29\" — Schrader valve. Reliable backup.","r11.badge":"TUBE",
+                "r12.name":"Cateye Volt 100 Set","r12.desc":"USB rechargeable front + rear LED set. 100 lumens.","r12.badge":"LIGHT SET",
+                "r13.name":"Knog Plus Front Light","r13.desc":"Compact silicone-strap LED. Magnetic USB charging. 4 modes.","r13.badge":"FRONT LIGHT",
+                "r14.name":"USB LED Rear Light","r14.desc":"Bright rear LED, USB-C rechargeable. Multiple flashing modes.","r14.badge":"REAR LIGHT",
+                "r15.name":"Finish Line Dry Lube","r15.desc":"120ml Teflon dry chain lube. Ideal for dry conditions.","r15.badge":"CHAIN LUBE",
+                "r16.name":"WD-40 Bike Cleaner","r16.desc":"Degreaser & frame cleaner spray. Strips grease without harming paint.","r16.badge":"CLEANER",
+                "r17.name":"Park Tool PolyLube 1000","r17.desc":"Multi-purpose grease for bearings, hubs, and headsets. 113g tub.","r17.badge":"GREASE",
+                "r18.name":"Kryptonite KryptoLok U-Lock","r18.desc":"Hardened steel U-lock with 4-foot cable. Bronze security rating.","r18.badge":"U-LOCK",
+                "r19.name":"Bell Tracker Helmet","r19.desc":"Adult helmet with 19 vents. CPSC-certified.","r19.badge":"HELMET",
+                "r20.name":"Topeak JoeBlow Sport","r20.desc":"Floor pump, max 160 PSI, dual-head Presta/Schrader.","r20.badge":"FLOOR PUMP",
+                "r21.name":"Wellgo Platform Pedals","r21.desc":"Aluminum platform pedals with grip pins. Sealed bearings, 9/16\".","r21.badge":"PEDALS",
+                "r22.name":"Elite Fly Bottle + Cage","r22.desc":"550ml bidon plus aluminum cage. BPA-free.","r22.badge":"HYDRATION",
+                "r23.name":"Velo Cork Bar Tape","r23.desc":"Cushioned cork road bar tape, set of 2. Comfortable for long rides.","r23.badge":"BAR TAPE"
             },
             es: {
                 "nav.home":"INICIO","nav.about":"NOSOTROS","nav.contact":"CONTACTO","nav.reserve":"RESERVAR ▾","nav.onsite":"Servicio a domicilio","nav.parts":"Entrega de repuestos","nav.callback":"Solicitar llamado",
                 "shop.eyebrow":"ENTREGA DE REPUESTOS","shop.tagline":"Repuestos reales. Calidad real. Entregados por gatos muy serios.",
                 "shop.search":"Buscar repuestos...","shop.cart":"Carrito",
-                "cat.all":"Todo","cat.chains":"Cadenas y Transmisión","cat.brakes":"Frenos","cat.tires":"Ruedas y Cubiertas","cat.lights":"Luces","cat.lubes":"Lubricantes","cat.accessories":"Accesorios",
+                "cat.all":"Todo","cat.kitty":"🐾 Kitty Originals","cat.chains":"Cadenas y Transmisión","cat.brakes":"Frenos","cat.tires":"Ruedas y Cubiertas","cat.lights":"Luces","cat.lubes":"Lubricantes","cat.accessories":"Accesorios",
                 "shop.noResults.title":"Acá no hay nada, solo pelusa","shop.noResults.text":"Probá con otra búsqueda o categoría",
                 "cart.your":"Tu","cart.basket":"Canasta","cart.subtotal":"Subtotal","cart.shipping":"Envío (por gato)","cart.total":"Total","cart.checkout":"Finalizar compra 🐾",
                 "cart.note.ars":"Envío gratis en pedidos superiores a $70.000. Gatos incluidos.",
                 "cart.note.usd":"Envío gratis en pedidos superiores a US$ 50. Gatos incluidos.",
                 "cart.empty.text":"Tu canasta está vacía. ¡Andá a elegir algo lindo para tu bici!",
                 "toast.added":"¡Agregado a tu canasta!",
-                "p1.name":"Cadena Shimano CN-HG40","p1.desc":"Cadena 6/7/8 velocidades para MTB y ruta. La favorita de los gatos — silenciosa y confiable.","p1.badge":"TRANSMISIÓN",
-                "p2.name":"Cadena KMC X8","p2.desc":"Cadena 8 velocidades con QuickLink. Más liviana que la HG40 — purr-fecta para uso diario.","p2.badge":"TRANSMISIÓN",
-                "p3.name":"Cassette Shimano HG200 7v","p3.desc":"Cassette de 7 velocidades 12-32T. Compatible con Tourney, Altus y la mayoría de MTBs.","p3.badge":"CASSETTE",
-                "p4.name":"Cambio Shimano Altus","p4.desc":"Cambio trasero RD-M310 de 7/8 velocidades. Cambios suaves, incluso con pelos de gato alrededor.","p4.badge":"CAMBIO",
-                "p5.name":"Pastillas Shimano B01S","p5.desc":"Pastillas de freno a disco resinadas. Frenan en seco. O sobre un ratón. Lo que pase primero.","p5.badge":"PASTILLAS DISCO",
-                "p6.name":"Pastillas V-Brake Shimano","p6.desc":"Pastillas estándar para V-brake, 70mm. Confiables, baratas, repuesto obligado de todo gato.","p6.badge":"V-BRAKE",
-                "p7.name":"Manijas Shimano Tourney","p7.desc":"Par de manijas de freno BL-TX800. Ergonómicas, hasta para patitas.","p7.badge":"MANIJAS",
-                "p8.name":"Cubierta Maxxis Ardent 27.5x2.25","p8.desc":"Cubierta MTB todo terreno. Con suficiente agarre para perseguir el láser cuesta abajo.","p8.badge":"CUBIERTA MTB",
-                "p9.name":"Cubierta Schwalbe Marathon 700x35","p9.desc":"Legendaria cubierta urbana anti-pinchaduras. Aguanta todo, salvo las siestas de gato.","p9.badge":"CUBIERTA URBANA",
-                "p10.name":"Cubierta Vee Rubber Speedster 700x28","p10.desc":"Cubierta de ruta lisa y rápida. Upgrade económico para uso diario.","p10.badge":"CUBIERTA RUTA",
-                "p11.name":"Cámara Schwalbe AV13","p11.desc":"Cámara premium para 26\"/27.5\"/29\" — válvula Schrader. El backup confiable.","p11.badge":"CÁMARA",
-                "p12.name":"Set Cateye Volt 100","p12.desc":"Set delantero + trasero LED recargable USB. 100 lúmenes. Brillan como ojos de gato real.","p12.badge":"SET DE LUCES",
-                "p13.name":"Luz delantera Knog Plus","p13.desc":"LED compacto con cinta de silicona. Carga USB magnética. 4 modos.","p13.badge":"LUZ DELANTERA",
-                "p14.name":"Luz trasera LED USB","p14.desc":"LED trasero brillante, recargable USB-C. Múltiples modos de parpadeo para seguridad.","p14.badge":"LUZ TRASERA",
-                "p15.name":"Finish Line Dry Lube","p15.desc":"Lubricante seco para cadena con Teflon, 120ml. Hace que tu transmisión ronronee — literal.","p15.badge":"LUBRICANTE",
-                "p16.name":"WD-40 Bike Cleaner","p16.desc":"Desengrasante y limpiador de cuadro en spray. Saca la grasa sin dañar la pintura.","p16.badge":"LIMPIADOR",
-                "p17.name":"Grasa Park Tool PolyLube 1000","p17.desc":"Grasa multipropósito para rulemanes, masas y direcciones. Pote de 113g.","p17.badge":"GRASA",
-                "p18.name":"Candado Kryptonite KryptoLok U","p18.desc":"Candado U de acero templado con cable de 1.2m. Ni los mapaches pueden con él.","p18.badge":"CANDADO U",
-                "p19.name":"Casco Bell Tracker","p19.desc":"Casco adulto con 19 ventilaciones. Certificado CPSC. Agujeros para orejas de gato no incluidos.","p19.badge":"CASCO",
-                "p20.name":"Inflador Topeak JoeBlow Sport","p20.desc":"Inflador de pie, máx 160 PSI, cabezal doble Presta/Schrader. El inflador que los gatos avalan.","p20.badge":"INFLADOR",
-                "p21.name":"Pedales Wellgo Plataforma","p21.desc":"Pedales de aluminio con pinches. Rulemanes sellados, rosca 9/16\".","p21.badge":"PEDALES",
-                "p22.name":"Bidón Elite Fly + Portabidón","p22.desc":"Bidón de 550ml más portabidón de aluminio. Sin BPA. Probado por gatos muy sedientos.","p22.badge":"HIDRATACIÓN",
-                "p23.name":"Cinta de manubrio Velo Cork","p23.desc":"Cinta de corcho acolchada para manubrio de ruta, set de 2. Cómoda para salidas largas.","p23.badge":"CINTA"
+                "kitty.badge":"KITTY ORIGINAL",
+                "page.prev":"← Anterior","page.next":"Siguiente →",
+                // ── Kitty Originals ──
+                "k1.name":"Cadena Purr-fecta","k1.desc":"La cadena más suave de la camada. No chirría — palabra de gato.","k1.badge":"TRANSMISIÓN",
+                "k2.name":"Cassette Furr-rolado","k2.desc":"Cassette de 11 velocidades. Más suave que un gato estirándose.","k2.badge":"CASSETTE",
+                "k3.name":"Pastillas Bigotes","k3.desc":"Frenan en seco. O sobre un ratón. Lo que pase primero.","k3.badge":"FRENOS",
+                "k4.name":"Cubierta Zoomie 26\"","k4.desc":"Con suficiente agarre para perseguir el láser. Todo terreno.","k4.badge":"CUBIERTA",
+                "k5.name":"Set Ojo de Gato","k5.desc":"Set de LEDs delantero y trasero. Brillan como ojos de gato real.","k5.badge":"LUZ",
+                "k6.name":"Luz Puntero Láser","k6.desc":"Luz delantera ultra brillante. Confunde a los perros a 50m a la redonda.","k6.badge":"LUZ",
+                "k7.name":"Purr Lube","k7.desc":"Lubricante premium para cadenas. Hace que tu bici ronronee — literal.","k7.badge":"LUBRICANTE",
+                "k8.name":"Sellador Atún","k8.desc":"Líquido auto-sellante para cubiertas tubeless. Huele a atún. Casi.","k8.badge":"SELLADOR",
+                "k9.name":"Campanita Meow","k9.desc":"Dice \"miau\" en vez de \"ring\". Científicamente más tierna.","k9.badge":"CAMPANA",
+                "k10.name":"Candado Gato Ninja","k10.desc":"Candado en U reforzado. Ni los mapaches pueden con él.","k10.badge":"CANDADO",
+                "k11.name":"Cinta Pawful","k11.desc":"Cinta para manubrio con estampa de huellitas. Suave, pegajosa, tierna.","k11.badge":"AGARRE",
+                "k12.name":"Cintas Catnip","k12.desc":"Cintas para manubrio con un toque de catnip. A los ciclistas les encantan, a los gatos más.","k12.badge":"AGARRE",
+                // ── Real Brands ──
+                "r1.name":"Cadena Shimano CN-HG40","r1.desc":"Cadena 6/7/8 velocidades para MTB y ruta. Silenciosa y confiable.","r1.badge":"TRANSMISIÓN",
+                "r2.name":"Cadena KMC X8","r2.desc":"Cadena 8 velocidades con QuickLink. Más liviana que la HG40 — perfecta para uso diario.","r2.badge":"TRANSMISIÓN",
+                "r3.name":"Cassette Shimano HG200 7v","r3.desc":"Cassette de 7 velocidades 12-32T. Compatible con Tourney, Altus y la mayoría de MTBs.","r3.badge":"CASSETTE",
+                "r4.name":"Cambio Shimano Altus","r4.desc":"Cambio trasero RD-M310 de 7/8 velocidades. Cambios suaves a buen precio.","r4.badge":"CAMBIO",
+                "r5.name":"Pastillas Shimano B01S","r5.desc":"Pastillas de freno a disco resinadas. Frenado silencioso, reemplazo en minutos.","r5.badge":"PASTILLAS DISCO",
+                "r6.name":"Pastillas V-Brake Shimano","r6.desc":"Pastillas estándar para V-brake, 70mm. Confiables y baratas.","r6.badge":"V-BRAKE",
+                "r7.name":"Manijas Shimano Tourney","r7.desc":"Par de manijas de freno BL-TX800. Ergonómicas y durables.","r7.badge":"MANIJAS",
+                "r8.name":"Cubierta Maxxis Ardent 27.5x2.25","r8.desc":"Cubierta MTB todo terreno. Excelente agarre en tierra y piedra.","r8.badge":"CUBIERTA MTB",
+                "r9.name":"Cubierta Schwalbe Marathon 700x35","r9.desc":"Legendaria cubierta urbana anti-pinchaduras. A prueba de balas para uso diario.","r9.badge":"CUBIERTA URBANA",
+                "r10.name":"Cubierta Vee Rubber Speedster 700x28","r10.desc":"Cubierta de ruta lisa y rápida. Upgrade económico para uso diario.","r10.badge":"CUBIERTA RUTA",
+                "r11.name":"Cámara Schwalbe AV13","r11.desc":"Cámara premium para 26\"/27.5\"/29\" — válvula Schrader. Backup confiable.","r11.badge":"CÁMARA",
+                "r12.name":"Set Cateye Volt 100","r12.desc":"Set delantero + trasero LED recargable USB. 100 lúmenes.","r12.badge":"SET DE LUCES",
+                "r13.name":"Luz delantera Knog Plus","r13.desc":"LED compacto con cinta de silicona. Carga USB magnética. 4 modos.","r13.badge":"LUZ DELANTERA",
+                "r14.name":"Luz trasera LED USB","r14.desc":"LED trasero brillante, recargable USB-C. Múltiples modos de parpadeo.","r14.badge":"LUZ TRASERA",
+                "r15.name":"Finish Line Dry Lube","r15.desc":"Lubricante seco para cadena con Teflon, 120ml. Ideal para condiciones secas.","r15.badge":"LUBRICANTE",
+                "r16.name":"WD-40 Bike Cleaner","r16.desc":"Desengrasante y limpiador de cuadro en spray. Saca la grasa sin dañar la pintura.","r16.badge":"LIMPIADOR",
+                "r17.name":"Grasa Park Tool PolyLube 1000","r17.desc":"Grasa multipropósito para rulemanes, masas y direcciones. Pote de 113g.","r17.badge":"GRASA",
+                "r18.name":"Candado Kryptonite KryptoLok U","r18.desc":"Candado U de acero templado con cable de 1.2m. Nivel de seguridad bronce.","r18.badge":"CANDADO U",
+                "r19.name":"Casco Bell Tracker","r19.desc":"Casco adulto con 19 ventilaciones. Certificado CPSC.","r19.badge":"CASCO",
+                "r20.name":"Inflador Topeak JoeBlow Sport","r20.desc":"Inflador de pie, máx 160 PSI, cabezal doble Presta/Schrader.","r20.badge":"INFLADOR",
+                "r21.name":"Pedales Wellgo Plataforma","r21.desc":"Pedales de aluminio con pinches. Rulemanes sellados, rosca 9/16\".","r21.badge":"PEDALES",
+                "r22.name":"Bidón Elite Fly + Portabidón","r22.desc":"Bidón de 550ml más portabidón de aluminio. Sin BPA.","r22.badge":"HIDRATACIÓN",
+                "r23.name":"Cinta de manubrio Velo Cork","r23.desc":"Cinta de corcho acolchada para manubrio de ruta, set de 2. Cómoda para salidas largas.","r23.badge":"CINTA"
             },
             lolcat: {
                 "nav.home":"HOMEZ","nav.about":"ABOUTZ UZ","nav.contact":"MEOW US","nav.reserve":"RESERVEZ SERVIS ▾","nav.onsite":"Onsite Servis","nav.parts":"Parts Deliveryz","nav.callback":"Request Cullbackz",
                 "shop.eyebrow":"PARTZ DELIVRY","shop.tagline":"Reel partz. Reel qualitee. Delivrd by verry seereeus catz.",
                 "shop.search":"Searchin 4 partz...","shop.cart":"Baskit",
-                "cat.all":"Evrytin","cat.chains":"Chainz n Drivez","cat.brakes":"Braekz","cat.tires":"Wheelz n Tirez","cat.lights":"Lytez","cat.lubes":"Lubez","cat.accessories":"Aksesori0z",
+                "cat.all":"Evrytin","cat.kitty":"🐾 Kitty Originalz","cat.chains":"Chainz n Drivez","cat.brakes":"Braekz","cat.tires":"Wheelz n Tirez","cat.lights":"Lytez","cat.lubes":"Lubez","cat.accessories":"Aksesori0z",
                 "shop.noResults.title":"Nuffin heer, jus dust bunniez","shop.noResults.text":"Try difrent searchin or kategoree",
                 "cart.your":"Urz","cart.basket":"Baskit","cart.subtotal":"Subtotalz","cart.shipping":"Delivry (by kitteh)","cart.total":"Tootalz","cart.checkout":"Cheekoutz 🐾",
                 "cart.note.ars":"Free delivry on ordrz ovr $70.000. Kittehz includd.",
                 "cart.note.usd":"Free delivry on ordrz ovr US$ 50. Kittehz includd.",
                 "cart.empty.text":"Ur baskit iz empty. Go pik sumtin nyce 4 ur bike!",
                 "toast.added":"Addd 2 ur baskit!",
-                "p1.name":"Shimano CN-HG40 Chaine","p1.desc":"6/7/8-speed MTB n road chaine. Da kitteh-favrit — silent, smooth, n reliable.","p1.badge":"DRIVTRAEN",
-                "p2.name":"KMC X8 Chaine","p2.desc":"8-speed chaine wif QuickLink. Litr dan HG40 — purr-fect 4 dailee ryderz.","p2.badge":"DRIVTRAEN",
-                "p3.name":"Shimano HG200 Cassete 7v","p3.desc":"7-speed cassete 12-32T. Compatibl wif Tourney, Altus n moast MTBz.","p3.badge":"CASSETE",
-                "p4.name":"Shimano Altus Rear Derailur","p4.desc":"RD-M310 7/8-speed rear derailur. Smooth shifts, evn wif kitteh hayr around.","p4.badge":"DERAILUR",
-                "p5.name":"Shimano B01S Disk Padz","p5.desc":"Resin disk braek padz. Stop on a dyme. Or a mowse. Whichevr comez furst.","p5.badge":"DISK PADZ",
-                "p6.name":"Shimano V-Braek Padz","p6.desc":"Standrd V-braek padz, 70mm. Reliabl, cheep, evry kitteh haz spare set.","p6.badge":"V-BRAEK",
-                "p7.name":"Shimano Tourney Braek Leverz","p7.desc":"BL-TX800 braek levr payr. Ergonomik, evn 4 pawz.","p7.badge":"LEVERZ",
-                "p8.name":"Maxxis Ardent 27.5x2.25","p8.desc":"Awl-terraen MTB tyre. Grippee enuff 2 chaes da lazer pointr downhil.","p8.badge":"MTB TYRE",
-                "p9.name":"Schwalbe Marathon 700x35","p9.desc":"Lejendary anti-punkchur urban tyre. Goez thru aniting eksept kat napz.","p9.badge":"URBAN TYRE",
-                "p10.name":"Vee Rubber Speedster 700x28","p10.desc":"Smooth, fast road tyre. Affordabl upgrayd 4 dailee komutz.","p10.badge":"ROAD TYRE",
-                "p11.name":"Schwalbe AV13 Toob","p11.desc":"Premium toob 4 26\"/27.5\"/29\" — Schrader valv. Da reliabl bakup.","p11.badge":"TOOB",
-                "p12.name":"Cateye Volt 100 Set","p12.desc":"USB rechargabl front + reer LED set. 100 loomenz. Glowz lyk reel kat eyez.","p12.badge":"LYTE SET",
-                "p13.name":"Knog Plus Front Lyte","p13.desc":"Kompak silikon-strap LED. Magnetic USB charjin. 4 modez.","p13.badge":"FRONT LYTE",
-                "p14.name":"USB LED Reer Lyte","p14.desc":"Bryt reer LED, USB-C rechargabl. Multipl flashin modez 4 saftee.","p14.badge":"REER LYTE",
-                "p15.name":"Finish Line Dry Lube","p15.desc":"120ml Teflon dry chaine lube. Makez ur drivtraen purr — litrally.","p15.badge":"CHAINE LUBE",
-                "p16.name":"WD-40 Bike Cleenr","p16.desc":"Degreesr n frame cleenr spray. Stripz grees wifout harmin paent.","p16.badge":"CLEENR",
-                "p17.name":"Park Tool PolyLube 1000","p17.desc":"Multi-purpos grees 4 berrings, hubz, n hedsetz. 113g tub.","p17.badge":"GREES",
-                "p18.name":"Kryptonite KryptoLok U-Lok","p18.desc":"Hardnd steel U-lok wif 4-foot kable. Evn raccoonz cant krak it.","p18.badge":"U-LOK",
-                "p19.name":"Bell Trackr Helmit","p19.desc":"Adult helmit wif 19 ventz. CPSC-sertifyd. Kat-eer holez not includd.","p19.badge":"HELMIT",
-                "p20.name":"Topeak JoeBlow Sport","p20.desc":"Floor pump, max 160 PSI, dual-hed Presta/Schrader. Da pump kittehz endorse.","p20.badge":"FLOR PUMP",
-                "p21.name":"Wellgo Platfrm Pedalz","p21.desc":"Aluminum platfrm pedalz wif grip pinz. Seald berrings, 9/16\" thred.","p21.badge":"PEDALZ",
-                "p22.name":"Elite Fly Botl + Caej","p22.desc":"550ml bidon pluz aluminum caej. BPA-free. Testd by verry thirstee kittehz.","p22.badge":"HYDRASHUN",
-                "p23.name":"Velo Kork Bar Taep","p23.desc":"Kushiond kork road bar taep, set of 2. Komfortabl 4 long ryidz.","p23.badge":"BAR TAEP"
+                "kitty.badge":"KITTEH ORIJNAL",
+                "page.prev":"← Bak","page.next":"Nekst →",
+                // ── Kitty Originals ──
+                "k1.name":"Purr-fect Chaine","k1.desc":"Smoothst chaine in da littr. Wont skweek — promiz.","k1.badge":"DRIVTRAEN",
+                "k2.name":"Furr-rolld Cassete","k2.desc":"11-speed cassete. Smoothr geer chanjz dan a kitteh stretch.","k2.badge":"CASSETE",
+                "k3.name":"Whiskr Braek Padz","k3.desc":"Stop on a dyme. Or a mowse. Whichevr comez furst.","k3.badge":"BRAEKZ",
+                "k4.name":"Zoomie Tyre 26\"","k4.desc":"Grippee enuff 2 chaes da lazer pointr. Awl terraen.","k4.badge":"TYRE",
+                "k5.name":"Kat-Eye Lyte Set","k5.desc":"Front + reer LED set. Glowz lyk reel kitteh eyez at nite.","k5.badge":"LYTE",
+                "k6.name":"Lazr Pointr Lyte","k6.desc":"Ultra-bryt front lyte. Konfusez doggos in 50m radius.","k6.badge":"LYTE",
+                "k7.name":"Purr Lube","k7.desc":"Premium chaine lube. Makez ur bike purr — litrally.","k7.badge":"LUBE",
+                "k8.name":"Tuna Tyre Seelant","k8.desc":"Self-seelin floowid 4 toobless tyrz. Smelz lyk tuna. Sort of.","k8.badge":"SEELANT",
+                "k9.name":"Meow Bel","k9.desc":"Sayz \"meow\" instd of \"ring\". Sienntifiklee cuter.","k9.badge":"BEL",
+                "k10.name":"Ninja Kat Lok","k10.desc":"Hevvy-dootee U-lok. Evn raccoonz cant krak it.","k10.badge":"LOK",
+                "k11.name":"Pawful Grip Taep","k11.desc":"Handlbar taep wif paw print patrn. Soft, stikee, cute.","k11.badge":"GRIP",
+                "k12.name":"Katnip Bar Wrapz","k12.desc":"Bar wrapz wif a hint of katnip. Ryderz luv em, kittehz luv em mor.","k12.badge":"GRIP",
+                // ── Real Brands ──
+                "r1.name":"Shimano CN-HG40 Chaine","r1.desc":"6/7/8-speed MTB n road chaine. Silent, smooth, n reliable.","r1.badge":"DRIVTRAEN",
+                "r2.name":"KMC X8 Chaine","r2.desc":"8-speed chaine wif QuickLink. Litr dan HG40 — perfect 4 dailee ryderz.","r2.badge":"DRIVTRAEN",
+                "r3.name":"Shimano HG200 Cassete 7v","r3.desc":"7-speed cassete 12-32T. Compatibl wif Tourney, Altus n moast MTBz.","r3.badge":"CASSETE",
+                "r4.name":"Shimano Altus Rear Derailur","r4.desc":"RD-M310 7/8-speed rear derailur. Smooth shifts on a budjit.","r4.badge":"DERAILUR",
+                "r5.name":"Shimano B01S Disk Padz","r5.desc":"Resin disk braek padz. Kwiet brakin, replaesabl in minits.","r5.badge":"DISK PADZ",
+                "r6.name":"Shimano V-Braek Padz","r6.desc":"Standrd V-braek padz, 70mm. Reliabl n cheep.","r6.badge":"V-BRAEK",
+                "r7.name":"Shimano Tourney Braek Leverz","r7.desc":"BL-TX800 braek levr payr. Ergonomik n durabl.","r7.badge":"LEVERZ",
+                "r8.name":"Maxxis Ardent 27.5x2.25","r8.desc":"Awl-terraen MTB tyre. Eksellent grip on dirt n rok.","r8.badge":"MTB TYRE",
+                "r9.name":"Schwalbe Marathon 700x35","r9.desc":"Lejendary anti-punkchur urban tyre. Bulletproof dailee komutr.","r9.badge":"URBAN TYRE",
+                "r10.name":"Vee Rubber Speedster 700x28","r10.desc":"Smooth, fast road tyre. Affordabl upgrayd 4 dailee komutz.","r10.badge":"ROAD TYRE",
+                "r11.name":"Schwalbe AV13 Toob","r11.desc":"Premium toob 4 26\"/27.5\"/29\" — Schrader valv. Reliabl bakup.","r11.badge":"TOOB",
+                "r12.name":"Cateye Volt 100 Set","r12.desc":"USB rechargabl front + reer LED set. 100 loomenz.","r12.badge":"LYTE SET",
+                "r13.name":"Knog Plus Front Lyte","r13.desc":"Kompak silikon-strap LED. Magnetic USB charjin. 4 modez.","r13.badge":"FRONT LYTE",
+                "r14.name":"USB LED Reer Lyte","r14.desc":"Bryt reer LED, USB-C rechargabl. Multipl flashin modez.","r14.badge":"REER LYTE",
+                "r15.name":"Finish Line Dry Lube","r15.desc":"120ml Teflon dry chaine lube. Ideel 4 dry kondishunz.","r15.badge":"CHAINE LUBE",
+                "r16.name":"WD-40 Bike Cleenr","r16.desc":"Degreesr n frame cleenr spray. Stripz grees wifout harmin paent.","r16.badge":"CLEENR",
+                "r17.name":"Park Tool PolyLube 1000","r17.desc":"Multi-purpos grees 4 berrings, hubz, n hedsetz. 113g tub.","r17.badge":"GREES",
+                "r18.name":"Kryptonite KryptoLok U-Lok","r18.desc":"Hardnd steel U-lok wif 4-foot kable. Bronz sekuritee ratin.","r18.badge":"U-LOK",
+                "r19.name":"Bell Trackr Helmit","r19.desc":"Adult helmit wif 19 ventz. CPSC-sertifyd.","r19.badge":"HELMIT",
+                "r20.name":"Topeak JoeBlow Sport","r20.desc":"Floor pump, max 160 PSI, dual-hed Presta/Schrader.","r20.badge":"FLOR PUMP",
+                "r21.name":"Wellgo Platfrm Pedalz","r21.desc":"Aluminum platfrm pedalz wif grip pinz. Seald berrings, 9/16\".","r21.badge":"PEDALZ",
+                "r22.name":"Elite Fly Botl + Caej","r22.desc":"550ml bidon pluz aluminum caej. BPA-free.","r22.badge":"HYDRASHUN",
+                "r23.name":"Velo Kork Bar Taep","r23.desc":"Kushiond kork road bar taep, set of 2. Komfortabl 4 long ryidz.","r23.badge":"BAR TAEP"
             }
         };
 
@@ -320,12 +398,10 @@
         }
 
         // ═══════════════════════════════════════════════════════════════════
-        //  CURRENCY (ARS / USD)
+        //  CURRENCY
         // ═══════════════════════════════════════════════════════════════════
         const CURRENCY_KEY = 'kbfs-currency';
         let currency = localStorage.getItem(CURRENCY_KEY) || 'ARS';
-
-        // Free shipping thresholds & flat shipping cost (per currency)
         const SHIPPING = {
             ARS: { freeOver: 70000, flat: 6000 },
             USD: { freeOver: 50,    flat: 5 }
@@ -334,11 +410,8 @@
         function priceOf(p) { return currency === 'ARS' ? p.priceARS : p.priceUSD; }
 
         function fmtPrice(amount) {
-            if (currency === 'ARS') {
-                return '$' + amount.toLocaleString('es-AR');
-            } else {
-                return 'US$ ' + amount.toLocaleString('en-US');
-            }
+            if (currency === 'ARS') return '$' + amount.toLocaleString('es-AR');
+            return 'US$ ' + amount.toLocaleString('en-US');
         }
 
         function setCurrency(cur) {
@@ -369,53 +442,76 @@
         // ═══════════════════════════════════════════════════════════════════
         //  CART STATE
         // ═══════════════════════════════════════════════════════════════════
-        const CART_KEY = 'kbfs-cart';
+        const CART_KEY = 'kbfs-cart-v2'; // bumped: old keys (p1-p23) no longer match
         let cart = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
         function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
         // ═══════════════════════════════════════════════════════════════════
-        //  PRODUCT RENDERING
+        //  PAGINATION + RENDER
         // ═══════════════════════════════════════════════════════════════════
-        const grid = document.getElementById('productsGrid');
-        const noResults = document.getElementById('noResults');
+        const ITEMS_PER_PAGE = 12;
+        let currentPage = 1;
         let activeCategory = 'all';
         let searchTerm = '';
 
+        const grid = document.getElementById('productsGrid');
+        const noResults = document.getElementById('noResults');
+        const pagination = document.getElementById('pagination');
+
         function getLangDict() {
             return translations[getSavedLang()] || translations.en;
+        }
+
+        function getFilteredProducts() {
+            const dict = getLangDict();
+            const term = searchTerm.toLowerCase().trim();
+            return products.filter(p => {
+                const name  = (dict[`${p.key}.name`]  || '').toLowerCase();
+                const desc  = (dict[`${p.key}.desc`]  || '').toLowerCase();
+                const badge = (dict[`${p.key}.badge`] || '').toLowerCase();
+
+                let matchesCat;
+                if (activeCategory === 'all')        matchesCat = true;
+                else if (activeCategory === 'kitty') matchesCat = !!p.kitty;
+                else                                  matchesCat = p.cat === activeCategory;
+
+                const matchesSearch = !term || name.includes(term) || desc.includes(term) || badge.includes(term);
+                return matchesCat && matchesSearch;
+            });
         }
 
         function renderProducts() {
             const dict = getLangDict();
             grid.querySelectorAll('.product-card').forEach(c => c.remove());
 
-            let visibleCount = 0;
-            products.forEach(p => {
+            const filtered = getFilteredProducts();
+            const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (currentPage > totalPages) currentPage = 1;
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const visible = filtered.slice(start, start + ITEMS_PER_PAGE);
+
+            visible.forEach(p => {
                 const name  = dict[`${p.key}.name`]  || p.key;
                 const desc  = dict[`${p.key}.desc`]  || '';
                 const badge = dict[`${p.key}.badge`] || p.cat;
-
-                const matchesCat = activeCategory === 'all' || p.cat === activeCategory;
-                const term = searchTerm.toLowerCase().trim();
-                const matchesSearch = !term ||
-                    name.toLowerCase().includes(term) ||
-                    desc.toLowerCase().includes(term) ||
-                    badge.toLowerCase().includes(term);
-
-                if (!matchesCat || !matchesSearch) return;
-                visibleCount++;
+                const kittyLabel = dict["kitty.badge"] || 'KITTY ORIGINAL';
 
                 const visual = p.image
                     ? `<img class="product-img" src="${p.image}" alt="${name}" loading="lazy">`
                     : `<span class="product-emoji">${p.emoji}</span>`;
 
+                const kittyBadgeHtml = p.kitty
+                    ? `<span class="kitty-badge">🐾 ${kittyLabel}</span>`
+                    : '';
+
                 const card = document.createElement('article');
-                card.className = 'product-card';
+                card.className = 'product-card' + (p.kitty ? ' is-kitty' : '');
                 card.dataset.cat = p.cat;
                 card.dataset.id = p.id;
                 card.innerHTML = `
                     <div class="product-image">
                         <span class="product-badge">${badge}</span>
+                        ${kittyBadgeHtml}
                         ${visual}
                     </div>
                     <div class="product-info">
@@ -429,26 +525,58 @@
                 grid.insertBefore(card, noResults);
             });
 
-            noResults.classList.toggle('show', visibleCount === 0);
+            noResults.classList.toggle('show', filtered.length === 0);
+            renderPagination(totalPages);
         }
 
+        function renderPagination(totalPages) {
+            const dict = getLangDict();
+            if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+            const prevLbl = dict["page.prev"] || '← Prev';
+            const nextLbl = dict["page.next"] || 'Next →';
+
+            let html = `<button class="page-btn" data-page="prev"${currentPage === 1 ? ' disabled' : ''}>${prevLbl}</button>`;
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<button class="page-btn${i === currentPage ? ' active' : ''}" data-page="${i}">${i}</button>`;
+            }
+            html += `<button class="page-btn" data-page="next"${currentPage === totalPages ? ' disabled' : ''}>${nextLbl}</button>`;
+            pagination.innerHTML = html;
+        }
+
+        pagination.addEventListener('click', e => {
+            const btn = e.target.closest('.page-btn');
+            if (!btn || btn.disabled) return;
+            const page = btn.dataset.page;
+            if (page === 'prev') currentPage--;
+            else if (page === 'next') currentPage++;
+            else currentPage = parseInt(page, 10);
+            renderProducts();
+            // smooth scroll back to filters when changing page
+            document.querySelector('.category-filters').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Add-to-cart
         grid.addEventListener('click', e => {
             const btn = e.target.closest('[data-add]');
             if (!btn) return;
             addToCart(btn.dataset.add);
         });
 
+        // Category filters
         document.getElementById('categoryFilters').addEventListener('click', e => {
             const pill = e.target.closest('.cat-pill');
             if (!pill) return;
             document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
             activeCategory = pill.dataset.cat;
+            currentPage = 1;
             renderProducts();
         });
 
+        // Search
         document.getElementById('searchInput').addEventListener('input', e => {
             searchTerm = e.target.value;
+            currentPage = 1;
             renderProducts();
         });
 
@@ -542,6 +670,7 @@
             if (removeBtn) removeItem(removeBtn.dataset.remove);
         });
 
+        // Drawer
         const drawer = document.getElementById('cartDrawer');
         const overlay = document.getElementById('cartOverlay');
         function openCart()  { drawer.classList.add('open'); overlay.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
@@ -551,6 +680,7 @@
         overlay.addEventListener('click', closeCart);
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeCart(); });
 
+        // Checkout (demo)
         checkoutBtn.addEventListener('click', () => {
             const lang = getSavedLang();
             const msgs = {
@@ -562,6 +692,7 @@
             cart = {}; saveCart(); renderCart(); closeCart();
         });
 
+        // Toast
         let toastTimer;
         function showToast() {
             const toast = document.getElementById('toast');
@@ -579,6 +710,7 @@
         setLang(getSavedLang());
         renderCart();
 
+        // Hamburger + nav (same as other pages)
         const hamburger = document.getElementById('hamburger');
         const mainNav = document.getElementById('mainNav');
         hamburger.addEventListener('click', () => {

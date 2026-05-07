@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty's BFS - Contact</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="ContactUs.css">
+    <link rel="icon" type="image/x-icon" href="public/KittysbikefixshopIcon.png">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty Logo"></a></div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            <nav id="mainNav">
+                <div class="navbutton"><a href="index.html" data-i18n="nav.home">HOME</a></div>
+                <div class="navbutton"><a href="AboutUs.html" data-i18n="nav.about">ABOUT US</a></div>
+                <div class="navbutton"><a href="ContacUs.html" class="active-page" data-i18n="nav.contact">CONTACT</a></div>
+                <div class="navbutton">
+                    <a href="#" data-i18n="nav.reserve">BOOK SERVICE ▾</a>
+                    <div class="dropdown"><div class="dropdown-inner">
+                        <div class="navbutton"><a href="#" data-i18n="nav.onsite">Onsite Service</a></div>
+                        <div class="navbutton"><a href="#" data-i18n="nav.parts">Parts Delivery</a></div>
+                        <div class="navbutton"><a href="#" data-i18n="nav.callback">Request Callback</a></div>
+                    </div></div>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn">🌐 <span id="currentLang">EN</span> <span class="arrow">▾</span></button>
+                    <div class="lang-dropdown"><div class="lang-dropdown-inner">
+                        <button class="lang-option" onclick="setLang('en')">ᴇɴ English</button>
+                        <button class="lang-option" onclick="setLang('es')">🇦🇷 Español</button>
+                        <button class="lang-option" onclick="setLang('lolcat')">🐱 LOLCAT</button>
+                    </div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <div class="contact-layout">
+            <div class="contact-info">
+                <span class="eyebrow" data-i18n="contact.eyebrow">GET IN TOUCH</span>
+                <h1 data-i18n="contact.title">Got a <span>squeaky</span> wheel?</h1>
+                <p class="intro" data-i18n="contact.intro">Got a question? Or just want to tell us our fur is extra shiny today? Send us a meow! Our team of professional mechani-cats is always ready to help — after a quick nap, of course.</p>
+                <div class="info-cards">
+                    <div class="info-card"><div class="icon">🕐</div><div class="info-text"><span class="info-label" data-i18n="contact.hours.label">HOURS </span><span class="info-value" data-i18n="contact.hours.value">Open when the sun is up, napping when the moon is out</span></div></div>
+                    <div class="info-card"><div class="icon">📍</div><div class="info-text"><span class="info-label" data-i18n="contact.location.label">LOCATION </span><span class="info-value" data-i18n="contact.location.value">We come to you — anywhere!</span></div></div>
+                    <div class="info-card"><div class="icon">🐾</div><div class="info-text"><span class="info-label" data-i18n="contact.response.label">RESPONSE TIME </span><span class="info-value" data-i18n="contact.response.value">After we finish chasing the laser pointer</span></div></div>
+                </div>
+            </div>
+            <div class="contact-form-card">
+                <h2 class="form-title" data-i18n="form.title">Send us a <span>Meow</span></h2>
+                <form action="https://formspree.io/f/mnnookel" method="post">
+                    <div class="input-group"><label for="name" data-i18n="form.name.label">YOUR NAME</label><input type="text" id="name" name="name" required data-i18n-placeholder="form.name.placeholder" placeholder="McKitty"></div>
+                    <div class="input-group"><label for="email" data-i18n="form.email.label">YOUR EMAIL</label><input type="email" id="email" name="email" required data-i18n-placeholder="form.email.placeholder" placeholder="nOOtaKittyIPrOmise123@gmeow.com"></div>
+                    <div class="input-group"><label for="message" data-i18n="form.message.label">YOUR MESSAGE / PROBLEM</label><textarea id="message" name="message" rows="4" required data-i18n-placeholder="form.message.placeholder" placeholder="My bike got broken again..."></textarea></div>
+                    <div class="checkbox-group"><input type="checkbox" id="checkbox" name="checkbox"><label for="checkbox" data-i18n="form.newsletter">Send me kitty newsletters and updates!</label></div>
+                    <button class="submit-btn" type="submit" data-i18n="form.submit">Send Message 🐾</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty's BFS"></a></div>
+            <div class="footer-links">
+                <a href="https://buymeacoffee.com/elmichi_jpeg" target="_blank" class="footer-link coffee">☕ Buy me a coffee</a>
+                <a href="https://www.instagram.com/realmichijpeg/" target="_blank" class="footer-link instagram">📸 @realmichijpeg</a>
+            </div>
+            <p class="footer-copy">© 2025 Kitty's Bike Fix Shop. All rights reserved. Purrfessionally made. 🐾</p>
+        </div>
+    </footer>
+
+    <script src="lang.js"></script>
+    <script>
+        const translations = {
+            en: {"nav.home":"HOME","nav.about":"ABOUT US","nav.contact":"CONTACT","nav.reserve":"BOOK SERVICE ▾","nav.onsite":"Onsite Service","nav.parts":"Parts Delivery","nav.callback":"Request Callback","contact.eyebrow":"GET IN TOUCH","contact.intro":"Got a question? Or just want to tell us our fur is extra shiny today? Send us a meow! Our team of professional mechani-cats is always ready to help — after a quick nap, of course.","contact.hours.label":"HOURS ","contact.hours.value":"Open when the sun is up, napping when the moon is out","contact.location.label":"LOCATION ","contact.location.value":"We come to you — anywhere!","contact.response.label":"RESPONSE TIME ","contact.response.value":"After we finish chasing the laser pointer","form.name.label":"YOUR NAME","form.name.placeholder":"McKitty","form.email.label":"YOUR EMAIL","form.email.placeholder":"nOOtaKittyIPrOmise123@gmeow.com","form.message.label":"YOUR MESSAGE / PROBLEM","form.message.placeholder":"My bike got broken again or I want my bike cleaned up...","form.newsletter":"Send me kitty newsletters and updates!","form.submit":"Send Message 🐾"},
+            es: {"nav.home":"INICIO","nav.about":"NOSOTROS","nav.contact":"CONTACTO","nav.reserve":"RESERVAR ▾","nav.onsite":"Servicio a domicilio","nav.parts":"Entrega de repuestos","nav.callback":"Solicitar llamado","contact.eyebrow":"CONTACTANOS","contact.intro":"¿Tenés una pregunta? ¿O solo querés decirnos que nuestro pelaje está extra brillante hoy? ¡Mandanos un maullido! Nuestro equipo de mecani-gatos profesionales siempre está listo para ayudar — después de una siestita, claro.","contact.hours.label":"HORARIO ","contact.hours.value":"Abierto cuando el sol está arriba, durmiendo cuando sale la luna","contact.location.label":"UBICACIÓN ","contact.location.value":"¡Vamos a donde vos estés!","contact.response.label":"TIEMPO DE RESPUESTA ","contact.response.value":"Después de terminar de perseguir el puntero láser","form.name.label":"TU NOMBRE","form.name.placeholder":"McKitty","form.email.label":"TU EMAIL","form.email.placeholder":"noSoyUnGatitoPrOmeto123@gmeow.com","form.message.label":"TU MENSAJE / PROBLEMA","form.message.placeholder":"Mi bici se rompió de nuevo...","form.newsletter":"¡Mandame newsletters y novedades de gatitos!","form.submit":"Enviar Mensaje 🐾"},
+            lolcat: {"nav.home":"HOMEZ","nav.about":"ABOUTZ UZ","nav.contact":"MEOW US","nav.reserve":"RESERVEZ SERVIS ▾","nav.onsite":"Onsite Servis","nav.parts":"Parts Deliveryz","nav.callback":"Request Cullbackz","contact.eyebrow":"SEND UZ A MEW","contact.intro":"Got a kwestshun? Or jus wanna tell us our fur iz extra shiny today? Send us a meow! Our team of purrfessional mechani-cats iz always reddy 2 help — after quick nap, of course.","contact.hours.label":"OURZ ","contact.hours.value":"We iz open when da sun iz up, an nappin when da moon iz out","contact.location.label":"WHEER WE IZ ","contact.location.value":"We comez 2 u — anywherz!","contact.response.label":"RESPONSEZ TIEM ","contact.response.value":"Aftr we finish chasin da lazer pointr","form.name.label":"UR NAEM","form.name.placeholder":"McKitty","form.email.label":"URZ EMAIL","form.email.placeholder":"nOOtaKittyIPrOmise123@gmeow.com","form.message.label":"URZ MEOWSSAGE / PROBLUM","form.message.placeholder":"Mah bike got brokd again...","form.newsletter":"Plz send me kitteh newsletterz and updatez!","form.submit":"Send Meowssage 🐾"}
+        };
+
+        const htmlOverrides = {
+            "contact.title": { en: 'Got a <span>squeaky</span> wheel?', es: '¿Tenés una <span>rueda</span> que chirría?', lolcat: 'Haz a <span>squeakee</span> weel?' },
+            "form.title": { en: 'Send us a <span>Meow</span>', es: 'Mandanos un <span>Maullido</span>', lolcat: 'Send uz <span>Meowssage</span>' }
+        };
+
+        function setLang(lang) { applyLang(lang, translations, htmlOverrides); }
+        setLang(getSavedLang());
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mainNav.classList.toggle('open');
+        });
+
+        // Mobile: toggle dropdowns on click
+        document.querySelectorAll('.navbutton > a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const navbutton = link.parentElement;
+                const dropdown = navbutton.querySelector('.dropdown');
+                if (dropdown && window.innerWidth <= 900) {
+                    e.preventDefault();
+                    navbutton.classList.toggle('open');
+                }
+            });
+        });
+
+        // Mobile: toggle lang switcher on click
+        document.querySelector('.lang-btn').addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                document.querySelector('.lang-switcher').classList.toggle('open');
+            }
+        });
+    </script>
+</body>
+</html>

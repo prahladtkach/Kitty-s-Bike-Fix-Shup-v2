@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty's Bike Fix Shop</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/x-icon" href="public/KittysbikefixshopIcon.png">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty Logo"></a></div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="mainNav">
+                <div class="navbutton"><a href="index.html" class="active-page" data-i18n="nav.home">HOME</a></div>
+                <div class="navbutton"><a href="AboutUs.html" data-i18n="nav.about">ABOUT US</a></div>
+                <div class="navbutton"><a href="ContacUs.html" data-i18n="nav.contact">CONTACT</a></div>
+                <div class="navbutton">
+                    <a href="#" data-i18n="nav.reserve">BOOK SERVICE ▾</a>
+                    <div class="dropdown"><div class="dropdown-inner">
+                        <div class="navbutton"><a href="#" data-i18n="nav.onsite">Onsite Service</a></div>
+                        <div class="navbutton"><a href="Shop.html" data-i18n="nav.parts">Parts Delivery</a></div>
+                        <div class="navbutton"><a href="ContacUs.html" data-i18n="nav.callback">Request Callback</a></div>
+                    </div></div>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn">🌐 <span id="currentLang">EN</span> <span class="arrow">▾</span></button>
+                    <div class="lang-dropdown"><div class="lang-dropdown-inner">
+                        <button class="lang-option" onclick="setLang('en')">ᴇɴ English</button>
+                        <button class="lang-option" onclick="setLang('es')">🇦🇷 Español</button>
+                        <button class="lang-option" onclick="setLang('lolcat')">🐱 LOLCAT</button>
+                    </div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="public/KittysBikefixshupLogo.png" alt="Kitty's BFS Logo" class="hero-logo">
+            <h1 data-i18n="hero.title">Welcome to Kitty's Bike Fix Shop!</h1>
+            <p data-i18n="hero.subtitle">Lots of people have trouble getting their bikes to the shop. We come to your office or home, anywhere. No stress, fast and easy bike fixing with prices you know upfront.</p>
+            <a href="ContacUs.html" class="cta-button" data-i18n="hero.cta">Book a Service Now!</a>
+        </div>
+        <div class="scroll-hint">↓ scroll</div>
+    </section>
+
+    <div class="page-content">
+        <div class="contenedor">
+            <h2 class="section-title" data-i18n="cards.title">Our <span>Services</span></h2>
+            <div class="section-divider"></div>
+            <div class="cards">
+                <div class="card1"><a href="Shop.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000000" stroke-width="2" d="M5,19 C7.209139,19 9,17.209139 9,15 C9,12.790861 7.209139,11 5,11 C2.790861,11 1,12.790861 1,15 C1,17.209139 2.790861,19 5,19 Z M19,19 C21.209139,19 23,17.209139 23,15 C23,12.790861 21.209139,11 19,11 C16.790861,11 15,12.790861 15,15 C15,17.209139 16.790861,19 19,19 Z M5,6 L10,6 M19,15 L16,5 L13,5 M9,9 L5,15 L12,15 C12,12 14,9 17,9 L16,9 L9,9 Z M9,9 L7,6"/></svg><h2 data-i18n="card1.title">Spare parts</h2><p data-i18n="card1.desc">Need moar partz? Orderz partz here</p></a></div>
+                <div class="card2"><a href="#"><svg fill="#fff" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 0 376.516 376.516" xml:space="preserve"><g><g><path d="M343.657,237.412c-21.188,1.306-49.053,22.476-75.93,34.648c-32.939,14.916-84.217,2.924-84.222,2.924c7.91-3.713,40.057-11.369,46.526-14.209c34.411-15.146,31.495-46.689,15.106-46.422c-21.652,0.346-34.362,5.659-77.566,11.551c-32.746,4.451-71.476,2.824-90.052,9.916c-26.224,10.017-68.458,77.41-68.458,77.41l65.3,63.285c0,0,40.43-39.817,60.099-39.817c44.823,0,46.633-0.599,88.255-2.864c17.699-0.946,21.393-1.673,31.521-5.087c53.951-18.24,111.881-66.818,112.945-72.647C369.647,242.55,354.844,236.736,343.657,237.412z"/><path d="M123.206,100.449l10.432,1.844c0.097,0.015,0.19,0.013,0.286,0.023c0.427,6.312,1.559,12.443,3.349,18.279c-0.129,0.056-0.253,0.097-0.373,0.18l-9.178,5.289c-1.571,0.914-2.717,2.406-3.188,4.151c-0.467,1.763-0.221,3.632,0.688,5.19l12.26,21.245c1.268,2.193,3.57,3.433,5.932,3.433c1.157,0,2.335-0.295,3.414-0.932l9.176-5.29c0.213-0.117,0.405-0.273,0.59-0.425c4.251,4.438,8.98,8.375,14.12,11.771c-0.118,0.219-0.244,0.454-0.338,0.709l-3.622,9.967c-0.625,1.701-0.539,3.585,0.224,5.228c0.77,1.644,2.156,2.903,3.863,3.539l23.048,8.392c0.777,0.276,1.562,0.405,2.343,0.405c2.795,0,5.416-1.72,6.423-4.504l3.623-9.956c0.104-0.277,0.165-0.558,0.229-0.837c3.006,0.33,6.061,0.525,9.152,0.525c3.1,0,6.15-0.195,9.155-0.526c0.065,0.279,0.126,0.559,0.226,0.836l3.623,9.958c0.624,1.711,1.895,3.098,3.539,3.868c0.916,0.415,1.898,0.634,2.895,0.634c0.787,0,1.584-0.143,2.336-0.402l23.051-8.393c3.553-1.299,5.381-5.216,4.092-8.767l-3.625-9.967c-0.098-0.255-0.215-0.49-0.338-0.71c5.135-3.396,9.869-7.335,14.115-11.772c0.197,0.152,0.375,0.309,0.592,0.426l9.178,5.291c1.049,0.622,2.229,0.931,3.422,0.931c0.592,0,1.191-0.09,1.77-0.236c1.746-0.477,3.248-1.619,4.15-3.196l12.266-21.245c1.887-3.273,0.768-7.449-2.504-9.34l-9.176-5.29c-0.123-0.083-0.252-0.125-0.367-0.181c1.777-5.835,2.912-11.967,3.338-18.278c0.094-0.012,0.189-0.009,0.289-0.024l10.434-1.843c1.789-0.313,3.379-1.326,4.42-2.807c1.037-1.479,1.443-3.32,1.133-5.116l-4.266-24.147c-0.312-1.797-1.324-3.388-2.809-4.413c-1.49-1.043-3.324-1.46-5.113-1.148l-10.414,1.84c-2.48-5.813-5.633-11.282-9.332-16.333l6.742-8.022c1.17-1.388,1.734-3.191,1.574-4.988c-0.16-1.814-1.025-3.481-2.422-4.644l-18.785-15.772c-1.393-1.161-3.186-1.732-4.996-1.579c-1.807,0.167-3.479,1.033-4.645,2.421l-6.602,7.876c-5.605-2.857-11.578-5.073-17.836-6.563V6.839c0-3.766-3.061-6.839-6.836-6.839h-24.529c-3.781,0-6.846,3.074-6.846,6.839v10.216c-6.25,1.489-12.225,3.706-17.832,6.563l-6.608-7.875c-1.165-1.388-2.835-2.254-4.643-2.421c-1.804-0.153-3.603,0.418-4.989,1.579l-18.795,15.772c-2.893,2.428-3.272,6.73-0.842,9.631l6.738,8.021c-3.702,5.051-6.844,10.521-9.332,16.333l-10.412-1.839c-1.78-0.312-3.624,0.104-5.106,1.147c-1.488,1.025-2.5,2.616-2.815,4.413l-4.255,24.147C117.001,96.253,119.487,99.802,123.206,100.449z M161.928,97.36c0-29.639,24.104-53.738,53.731-53.738c29.631,0,53.738,24.1,53.738,53.738c0,29.637-24.107,53.736-53.738,53.736C186.031,151.095,161.928,126.996,161.928,97.36z"/></g></g></svg><h2 data-i18n="card2.title">Service Types</h2><p data-i18n="card2.desc">We fix flat tires fast so you can get rolling again.</p></a></div>
+                <div class="card3"><a href="ContacUs.html"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="500pt" height="500pt" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet"><g transform="translate(0,500) scale(0.1,-0.1)" fill="#fff" stroke="none"><path d="M4025 4551 c-99 -36 -351 -156 -440 -209 -16 -9 -52 -31 -80 -47 -27 -16 -83 -51 -123 -77 l-72 -48 -38 19 c-109 55 -328 122 -502 152 -95 17 -428 18 -530 1 -163 -27 -360 -85 -488 -143 l-63 -29 -72 49 c-225 151 -616 341 -704 341 -28 0 -35 -6 -52 -38 -43 -84 -55 -158 -56 -337 0 -97 6 -206 14 -255 15 -95 71 -329 96 -403 23 -69 23 -75 -13 -150 -39 -80 -92 -211 -92 -226 0 -6 -12 -14 -27 -17 -66 -16 -133 -66 -191 -142 l-17 -24 -64 22 c-80 28 -111 19 -111 -34 0 -41 8 -47 88 -76 l62 -23 0 -244 0 -244 -37 -15 c-89 -34 -108 -48 -111 -81 -2 -25 2 -35 21 -48 23 -15 29 -14 83 4 32 12 58 20 59 18 1 -1 11 -18 23 -37 30 -51 80 -95 138 -124 42 -21 66 -26 128 -26 102 0 158 28 194 95 14 25 17 83 23 340 6 287 11 341 41 465 66 278 230 551 443 741 120 106 325 223 492 278 158 53 312 74 498 68 242 -9 404 -49 610 -154 133 -67 237 -144 355 -262 214 -215 341 -461 401 -776 21 -110 18 -439 -5 -545 -67 -308 -201 -550 -423 -760 -160 -152 -342 -260 -553 -326 l-80 -25 -38 29 c-20 16 -64 39 -98 51 -57 21 -75 22 -261 19 -199 -3 -200 -3 -258 -33 -227 -116 -196 -467 47 -540 75 -22 389 -21 466 1 62 18 141 84 162 134 9 23 22 32 54 40 114 29 167 45 234 71 327 130 606 357 795 649 50 78 147 259 147 275 0 4 6 21 14 38 8 18 21 52 29 77 13 39 19 46 48 51 61 10 128 47 179 99 27 28 50 54 50 58 0 4 4 13 8 20 7 9 21 8 65 -7 77 -27 107 -15 107 40 0 33 -22 52 -87 74 l-53 17 0 248 0 248 58 22 c76 31 82 37 82 76 0 53 -30 62 -115 33 -66 -22 -68 -22 -78 -3 -29 52 -102 115 -157 135 -49 18 -58 25 -69 57 -15 43 -17 50 -70 166 -45 98 -47 112 -26 172 30 89 63 217 91 364 22 113 25 428 5 520 -18 81 -36 125 -61 150 -24 24 -31 24 -95 1z"/></g></svg><h2 data-i18n="card3.title">Call for Advice</h2><p data-i18n="card3.desc">Stay safe with our expert brake inspection and advice.</p></a></div>
+            </div>
+
+            <!-- TESTIMONIALS --> 
+            <div class="testimonials">
+                <h2 data-i18n="test.title">What People Say About Us</h2>
+                <span class="subtitle" data-i18n="test.subtitle">100% legit testimonials. No fakes!</span>
+                <div class="tbox-grid">
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote"><span class="quote-short">"Dem kittehz no joke. Mai chain go clunk clunk, dey go mew mew, now mai bike go zoom zoom. Science iz real."</span></p>
+                        </div>
+                        <p class="author">— Bike Cat Lover 9000</p>
+                    </div>
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote">
+                                <span class="quote-short">"I had my doubts. Cats are unpredictable — like humans, but with fewer lies. I observed them closely while they worked on my bike..."</span>
+                                <span class="quote-full">"I had my doubts. Cats are unpredictable — like humans, but with fewer lies. I observed them closely while they worked on my bike. They didn't seem interested in me, only in the mechanisms. Their coordination was impressive, almost… symmetrical. One kitten sat perfectly still, staring at the chain as if calculating torque in silence. Another was eating cake crumbs I accidentally dropped. I didn't mind. The result was flawless. The pedals moved with mathematical precision, and the ride home felt lighter — perhaps due to the lack of guilt. I might return. Not because I need another repair, but because I'm curious if they remember me."</span>
+                            </p>
+                            <button class="read-more" onclick="toggleQuote(this)">Read more...</button>
+                        </div>
+                        <p class="author">— Ryusaki L. Lawliet</p>
+                    </div>
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote">
+                                <span class="quote-short">"I only came to this shop because I was told the staff were… cats. I assumed it was a gimmick. It wasn't..."</span>
+                                <span class="quote-full">"I only came to this shop because I was told the staff were… cats. I assumed it was a gimmick. It wasn't. These kittens worked with more precision and discipline than most humans I've ever met. Every movement was deliberate — clean, efficient. One of them even polished the gears until I could see my reflection. I must admit… it was unsettling to see such perfection in creatures so small. When they finished, my bike looked immaculate — almost divine. I don't know who trained them, but if justice had a workshop, it would look like this."</span>
+                            </p>
+                            <button class="read-more" onclick="toggleQuote(this)">Read more...</button>
+                        </div>
+                        <p class="author">— Light Yagami</p>
+                    </div>
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote">
+                                <span class="quote-short">"Omg, this place is sooo cute!! Tiny kittens in little mechanic outfits?? I almost died from how adorable they are!..."</span>
+                                <span class="quote-full">"Omg, this place is sooo cute!! Tiny kittens in little mechanic outfits?? I almost died from how adorable they are!! I brought my pink bike and they were obsessed with the ribbons! One of them even tied a new bow on the basket while purring. They cleaned everything so perfectly that now it sparkles like my accessories! I told them they should start an Instagram — I'd totally promote them! Best. Shop. Ever. (Also, one kitten winked at me. I think we have a connection.)"</span>
+                            </p>
+                            <button class="read-more" onclick="toggleQuote(this)">Read more...</button>
+                        </div>
+                        <p class="author">— Misa Amane</p>
+                    </div>
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote">
+                                <span class="quote-short">"I didn't know bikes could be this fun! These cats fixed mine so fast I didn't even have time to finish my meat!..."</span>
+                                <span class="quote-full">"I didn't know bikes could be this fun! These cats fixed mine so fast I didn't even have time to finish my meat! They worked together like a real crew — one holding the wheel, another jumping on the pedals, all meowing like a rhythm. When they were done, my bike looked shiny and strong, like a new ship ready to sail. I rode away yelling 'Let's go find some food!' and I swear the cats meowed back like they wanted to come too. I'll be back! Maybe next time I'll race them!"</span>
+                            </p>
+                            <button class="read-more" onclick="toggleQuote(this)">Read more...</button>
+                        </div>
+                        <p class="author">— Monkey D. Luffy</p>
+                    </div>
+                    <div class="tbox">
+                        <div class="quote-wrap">
+                            <p class="quote">
+                                <span class="quote-short">"I was heading east… or maybe west. Anyway, I got lost again and ended up here. A bike shop run by cats..."</span>
+                                <span class="quote-full">"I was heading east… or maybe west. Anyway, I got lost again and ended up here. A bike shop run by cats. At first, I thought it was some kind of illusion — but they worked like a real crew. One fixed the chain with the focus of a swordsman, another adjusted the brakes, and then, to my surprise, a little black kitten started polishing my swords. The reflection was so sharp I could see my own confusion in it. When I left, my bike rolled perfectly straight… unlike me. I took the wrong turn again right after. Still, if I find this place again, I'll let the cats handle my swords anytime."</span>
+                            </p>
+                            <button class="read-more" onclick="toggleQuote(this)">Read more...</button>
+                        </div>
+                        <p class="author">— Roronoa Zoro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty's BFS"></a></div>
+            <div class="footer-links">
+                <a href="https://buymeacoffee.com/elmichi_jpeg" target="_blank" class="footer-link coffee">☕ Buy me a coffee</a>
+                <a href="https://www.instagram.com/realmichijpeg/" target="_blank" class="footer-link instagram">📸 @realmichijpeg</a>
+            </div>
+            <p class="footer-copy">© 2025 Kitty's Bike Fix Shop. All rights reserved. Purrfessionally made. 🐾</p>
+        </div>
+    </footer>
+
+    <script src="lang.js"></script>
+    <script>
+        const translations = {
+            en: {"nav.home":"HOME","nav.about":"ABOUT US","nav.contact":"CONTACT","nav.reserve":"BOOK SERVICE ▾","nav.onsite":"Onsite Service","nav.parts":"Parts Delivery","nav.callback":"Request Callback","hero.title":"Welcome to Kitty's Bike Fix Shop!","hero.subtitle":"Lots of people have trouble getting their bikes to the shop. We come to your office or home, anywhere. No stress, fast and easy bike fixing with prices you know upfront.","hero.cta":"Book a Service Now!","card1.title":"Bike Parts","card1.desc":"Need more parts? Order parts here.","card2.title":"Service Types","card2.desc":"We fix flat tires fast so you can get rolling again.","card3.title":"Call for Advice","card3.desc":"Stay safe with our expert brake inspection and advice.","test.title":"What People Say About Us","test.subtitle":"100% legit testimonials. No fakes!"},
+            es: {"nav.home":"INICIO","nav.about":"NOSOTROS","nav.contact":"CONTACTO","nav.reserve":"RESERVAR ▾","nav.onsite":"Servicio a domicilio","nav.parts":"Entrega de repuestos","nav.callback":"Solicitar llamado","hero.title":"¡Bienvenido a la Bicicletería de Kitty!","hero.subtitle":"Mucha gente tiene problemas para llevar su bici al taller. Nosotros vamos a tu oficina o casa, donde sea. Sin estrés, reparación rápida y fácil con precios claros desde el principio.","hero.cta":"¡Reservar un servicio ahora!","card1.title":"Repuestos para tu bici","card1.desc":"¿Necesitás más repuestos? Pedí repuestos acá.","card2.title":"Tipos de Servicio","card2.desc":"Reparamos pinchazos rápido para que puedas seguir pedaleando.","card3.title":"Llamar para Consultas","card3.desc":"Mantente seguro con nuestra inspección experta de frenos.","test.title":"Lo que opina la gente","test.subtitle":"Testimonios 100% reales. ¡Sin falsificaciones!"},
+            lolcat: {"nav.home":"HOMEZ","nav.about":"ABOUTZ UZ","nav.contact":"MEOW US","nav.reserve":"RESERVEZ SERVIS ▾","nav.onsite":"Onsite Servis","nav.parts":"Parts Deliveryz","nav.callback":"Request Cullbackz","hero.title":"Welcum 2 Kitty's bike fix Shup!","hero.subtitle":"Lotz of hoomans haz trubble gettin dere bikies 2 da shop. We comez 2 ur office or ur hoem anywherz. No haz stress of draggin ur bikez 2 da shop. Fasst, ez-peazy bike fixin wif pricez u kno befur.","hero.cta":"Reservez Servis Now!","card1.title":"BIKE PARTZ","card1.desc":"Need moar partz? Orderz partz here.","card2.title":"Servis Taipez","card2.desc":"We fix flat tirez fast fast so u can go zoomies again.","card3.title":"Call fur Advices","card3.desc":"Stay safe wif our pro kitteh braek fixin skillz.","test.title":"Wut da pipol sayz abowt us","test.subtitle":"Dis iz 100 purcent legit meowmonialz!! No fakies!"}
+        };
+
+        const htmlOverrides = {
+            "cards.title": { en: 'Our <span>Services</span>', es: 'Nuestros <span>Servicios</span>', lolcat: 'Wut We <span>Duz</span>' }
+        };
+
+        function setLang(lang) { applyLang(lang, translations, htmlOverrides); }
+
+        function toggleQuote(btn) {
+            const wrap = btn.previousElementSibling;
+            const short = wrap.querySelector('.quote-short');
+            const full = wrap.querySelector('.quote-full');
+            const isExpanded = full.style.display === 'inline';
+            short.style.display = isExpanded ? 'inline' : 'none';
+            full.style.display = isExpanded ? 'none' : 'inline';
+            btn.textContent = isExpanded ? 'Read more...' : 'Read less';
+        }
+
+        setLang(getSavedLang());
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mainNav.classList.toggle('open');
+        });
+
+        // Mobile: toggle dropdowns on click instead of hover
+        document.querySelectorAll('.navbutton > a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const navbutton = link.parentElement;
+                const dropdown = navbutton.querySelector('.dropdown');
+                if (dropdown && window.innerWidth <= 900) {
+                    e.preventDefault();
+                    navbutton.classList.toggle('open');
+                }
+            });
+        });
+
+        // Mobile: toggle lang switcher on click
+        document.querySelector('.lang-btn').addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                document.querySelector('.lang-switcher').classList.toggle('open');
+            }
+        });
+    </script>
+</body>
+</html>

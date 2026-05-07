@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty's BFS - About Us</title>
+    <link rel="stylesheet" href="css-reset.css">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="icon" type="image/x-icon" href="public/KittysbikefixshopIcon.png">
+    <link rel="stylesheet" href="AboutUs.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty Logo"></a></div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            <nav id="mainNav">
+                <div class="navbutton"><a href="index.html" data-i18n="nav.home">HOME</a></div>
+                <div class="navbutton"><a href="AboutUs.html" class="active-page" data-i18n="nav.about">ABOUT US</a></div>
+                <div class="navbutton"><a href="ContacUs.html" data-i18n="nav.contact">CONTACT</a></div>
+                <div class="navbutton">
+                    <a href="#" data-i18n="nav.reserve">BOOK SERVICE ▾</a>
+                    <div class="dropdown"><div class="dropdown-inner">
+                        <div class="navbutton"><a href="#" data-i18n="nav.onsite">Onsite Service</a></div>
+                        <div class="navbutton"><a href="#" data-i18n="nav.parts">Parts Delivery</a></div>
+                        <div class="navbutton"><a href="#" data-i18n="nav.callback">Request Callback</a></div>
+                    </div></div>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn">🌐 <span id="currentLang">EN</span> <span class="arrow">▾</span></button>
+                    <div class="lang-dropdown"><div class="lang-dropdown-inner">
+                        <button class="lang-option" onclick="setLang('en')">ᴇɴ English</button>
+                        <button class="lang-option" onclick="setLang('es')">🇦🇷 Español</button>
+                        <button class="lang-option" onclick="setLang('lolcat')">🐱 LOLCAT</button>
+                    </div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="about-hero">
+        <div class="about-hero-bg"></div>
+        <div class="about-hero-overlay"></div>
+        <div class="about-hero-content">
+            <span class="eyebrow" data-i18n="hero.eyebrow">OUR STORY</span>
+            <h1 data-i18n="hero.title">About Kitty's BFS</h1>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <div class="story-section">
+            <div class="story-text">
+                <span class="eyebrow" data-i18n="story.eyebrow">HOW IT ALL STARTED</span>
+                <h2 data-i18n="story.title">A <span>cat</span> with a wrench and a dream.</h2>
+                <p data-i18n="story.p1">It all started in 2019 when Kitty Whiskers Jpeg — a stray tabby with an unusual talent for tightening bolts — wandered into an abandoned garage on the east side of town. Nobody knows how he learned to use tools. Some say he watched YouTube tutorials. Others say he was just born with it.</p>
+                <p data-i18n="story.p2">Word spread fast. First it was the neighbors, then the whole neighborhood. By 2021, Whiskers had recruited a full crew of mechani-cats, and Kitty's BFS was officially born. No appointment needed — they come to you, anywhere, anytime (after nap time).</p>
+                <p data-i18n="story.p3">Today we are the most purrfessional mobile bike repair service in the city. Our secret? We genuinely love bikes. And tuna. But mostly bikes.</p>
+            </div>
+            <div class="story-image"><img src="taller.png" alt="Kitty's Workshop"></div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-section">
+            <div class="stat-card" onclick="triggerCount(this)" title="Click to recount!">
+                <span class="stat-number" data-target="2400" data-suffix="+">0</span>
+                <span class="stat-label" data-i18n="stat1">Bikes Fixed</span>
+            </div>
+            <div class="stat-card" onclick="triggerCount(this)" title="Click to recount!">
+                <span class="stat-number" data-target="12" data-suffix="">0</span>
+                <span class="stat-label" data-i18n="stat2">Mechani-Cats</span>
+            </div>
+            <div class="stat-card" onclick="triggerCount(this)" title="Click to recount!">
+                <span class="stat-number" data-target="5" data-suffix="★">0</span>
+                <span class="stat-label" data-i18n="stat3">Average Rating</span>
+            </div>
+            <div class="stat-card" onclick="triggerCount(this)" title="Click to recount!">
+                <span class="stat-number" data-target="0" data-suffix="">0</span>
+                <span class="stat-label" data-i18n="stat4">Bikes Left Unfinished</span>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-i18n="team.title">Meet the <span>Crew</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle" data-i18n="team.subtitle">Highly trained. Very fluffy. Extremely professional.</p>
+
+        <div class="team-grid">
+            <div class="team-card"><span class="team-emoji">🐱</span><h3 class="team-name">Kitty Whiskers Jpeg</h3><span class="team-role" data-i18n="team.1.role">FOUNDER & HEAD MECHANIC</span><p class="team-bio" data-i18n="team.1.bio">The original mechani-cat. Specializes in gear systems and existential staring. Has never lost a bolt. Has lost several mice.</p></div>
+            <div class="team-card"><span class="team-emoji">🐈</span><h3 class="team-name">Professor Mittens</h3><span class="team-role" data-i18n="team.2.role">BRAKE SPECIALIST</span><p class="team-bio" data-i18n="team.2.bio">Former academic turned bike wizard. Wrote his thesis on "The Aerodynamics of Hairballs and Bicycle Drag." Top of his class.</p></div>
+            <div class="team-card"><span class="team-emoji">🐈‍❤️</span><h3 class="team-name">Señorita Purrfecto</h3><span class="team-role" data-i18n="team.3.role">CUSTOMER RELATIONS & WHEELS</span><p class="team-bio" data-i18n="team.3.bio">The face of Kitty's BFS. Fluent in 4 meow dialects. Once fixed a flat tire while simultaneously napping. We still don't know how.</p></div>
+            <div class="team-card"><span class="team-emoji">🦁</span><h3 class="team-name">Chairman Fluffington</h3><span class="team-role" data-i18n="team.4.role">CEO & STRATEGIC NAPPER</span><p class="team-bio" data-i18n="team.4.bio">Handles all major business decisions from his executive cushion. Approves every repair with a slow blink. Rarely wrong.</p></div>
+            <div class="team-card"><span class="team-emoji">🐾</span><h3 class="team-name">Tiny Tim Clawsworth</h3><span class="team-role" data-i18n="team.5.role">APPRENTICE MECHANIC</span><p class="team-bio" data-i18n="team.5.bio">The newest member of the crew. Still learning, but already shows incredible promise. Once fixed a derailleur by accident while chasing a screwdriver.</p></div>
+            <div class="team-card"><span class="team-emoji">😸</span><h3 class="team-name">DJ Purrington</h3><span class="team-role" data-i18n="team.6.role">MORALE OFFICER & MUSIC</span><p class="team-bio" data-i18n="team.6.bio">Keeps the workshop atmosphere top notch. Curates the official Kitty's BFS playlist. Strongly believes bikes are repaired faster with lo-fi music playing.</p></div>
+        </div>
+
+        <div class="values-section">
+            <h2 class="section-title" data-i18n="values.title">Our <span>Values</span></h2>
+            <div class="section-divider"></div>
+            <div class="values-grid">
+                <div class="value-card"><span class="value-icon">⚡</span><h3 class="value-title" data-i18n="val1.title">Fast as a Zoomie</h3><p class="value-desc" data-i18n="val1.desc">We work at full zoomie speed. Your bike won't wait around while we nap. Well, maybe a little. But then we're very fast.</p></div>
+                <div class="value-card"><span class="value-icon">🔧</span><h3 class="value-title" data-i18n="val2.title">Purrfect Quality</h3><p class="value-desc" data-i18n="val2.desc">We don't deliver a bike until it passes the Whiskers Inspection™ — a rigorous sniff test followed by a 3-second stare of approval.</p></div>
+                <div class="value-card"><span class="value-icon">💙</span><h3 class="value-title" data-i18n="val3.title">We Come to You</h3><p class="value-desc" data-i18n="val3.desc">No dragging your bike across the city. We show up at your door, fix everything, and leave without knocking anything off your shelf. Usually.</p></div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 data-i18n="cta.title">Ready to ride? 🐾</h2>
+            <p data-i18n="cta.subtitle">Let our mechani-cats take care of your bike. No stress. No hassle. Just purring engines and smooth wheels.</p>
+            <a href="ContacUs.html" class="cta-button" data-i18n="cta.btn">Book a Service Now!</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo"><a href="index.html"><img src="public/KittysBikefixshupLogo.png" alt="Kitty's BFS"></a></div>
+            <div class="footer-links">
+                <a href="https://buymeacoffee.com/elmichi_jpeg" target="_blank" class="footer-link coffee">☕ Buy me a coffee</a>
+                <a href="https://www.instagram.com/realmichijpeg/" target="_blank" class="footer-link instagram">📸 @realmichijpeg</a>
+            </div>
+            <p class="footer-copy">© 2025 Kitty's Bike Fix Shop. All rights reserved. Purrfessionally made. 🐾</p>
+        </div>
+    </footer>
+
+    <script src="lang.js"></script>
+    <script>
+        const translations = {
+            en: {"nav.home":"HOME","nav.about":"ABOUT US","nav.contact":"CONTACT","nav.reserve":"BOOK SERVICE ▾","nav.onsite":"Onsite Service","nav.parts":"Parts Delivery","nav.callback":"Request Callback","hero.eyebrow":"OUR STORY","hero.title":"About Kitty's BFS","story.eyebrow":"HOW IT ALL STARTED","story.p1":"It all started in 2019 when Kitty Whiskers Jpeg — a stray tabby with an unusual talent for tightening bolts — wandered into an abandoned garage on the east side of town. Nobody knows how he learned to use tools. Some say he watched YouTube tutorials. Others say he was just born with it.","story.p2":"Word spread fast. First it was the neighbors, then the whole neighborhood. By 2021, Whiskers had recruited a full crew of mechani-cats, and Kitty's BFS was officially born. No appointment needed — they come to you, anywhere, anytime (after nap time).","story.p3":"Today we are the most purrfessional mobile bike repair service in the city. Our secret? We genuinely love bikes. And tuna. But mostly bikes.","stat1":"Bikes Fixed","stat2":"Mechani-Cats","stat3":"Average Rating","stat4":"Bikes Left Unfinished","team.subtitle":"Highly trained. Very fluffy. Extremely professional.","team.1.role":"FOUNDER & HEAD MECHANIC","team.1.bio":"The original mechani-cat. Specializes in gear systems and existential staring. Has never lost a bolt. Has lost several mice.","team.2.role":"BRAKE SPECIALIST","team.2.bio":"Former academic turned bike wizard. Wrote his thesis on 'The Aerodynamics of Hairballs and Bicycle Drag.' Top of his class.","team.3.role":"CUSTOMER RELATIONS & WHEELS","team.3.bio":"The face of Kitty's BFS. Fluent in 4 meow dialects. Once fixed a flat tire while simultaneously napping. We still don't know how.","team.4.role":"CEO & STRATEGIC NAPPER","team.4.bio":"Handles all major business decisions from his executive cushion. Approves every repair with a slow blink. Rarely wrong.","team.5.role":"APPRENTICE MECHANIC","team.5.bio":"The newest member of the crew. Still learning, but already shows incredible promise. Once fixed a derailleur by accident while chasing a screwdriver.","team.6.role":"MORALE OFFICER & MUSIC","team.6.bio":"Keeps the workshop atmosphere top notch. Curates the official Kitty's BFS playlist. Strongly believes bikes are repaired faster with lo-fi music playing.","val1.title":"Fast as a Zoomie","val1.desc":"We work at full zoomie speed. Your bike won't wait around while we nap. Well, maybe a little. But then we're very fast.","val2.title":"Purrfect Quality","val2.desc":"We don't deliver a bike until it passes the Whiskers Inspection™ — a rigorous sniff test followed by a 3-second stare of approval.","val3.title":"We Come to You","val3.desc":"No dragging your bike across the city. We show up at your door, fix everything, and leave without knocking anything off your shelf. Usually.","cta.subtitle":"Let our mechani-cats take care of your bike. No stress. No hassle. Just purring engines and smooth wheels.","cta.btn":"Book a Service Now!"},
+            es: {"nav.home":"INICIO","nav.about":"NOSOTROS","nav.contact":"CONTACTO","nav.reserve":"RESERVAR ▾","nav.onsite":"Servicio a domicilio","nav.parts":"Entrega de repuestos","nav.callback":"Solicitar llamado","hero.eyebrow":"NUESTRA HISTORIA","hero.title":"Sobre Kitty's BFS","story.eyebrow":"CÓMO EMPEZÓ TODO","story.p1":"Todo empezó en 2019 cuando Kitty Whiskers Jpeg — un gato callejera con un talento inusual para apretar tuercas — entró a un garaje abandonado en el lado este de la ciudad. Nadie sabe cómo aprendió a usar herramientas. Algunos dicen que vio tutoriales en YouTube. Otros dicen que simplemente nació con ese don.","story.p2":"La noticia se corrió rápido. Para 2021, Whiskers ya había reclutado un equipo completo de mecani-gatos, y Kitty's BFS nació oficialmente. Sin turno previo — ellos van a donde estés, en cualquier momento (después de la siesta, claro).","story.p3":"Hoy somos el servicio de reparación de bicicletas a domicilio más purrfesional de la ciudad. ¿Nuestro secreto? Amamos genuinamente las bicicletas. Y el atún. Pero principalmente las bicicletas.","stat1":"Bicis Reparadas","stat2":"Mecani-Gatos","stat3":"Calificación Promedio","stat4":"Bicis Sin Terminar","team.subtitle":"Muy entrenados. Muy esponjosos. Extremadamente profesionales.","team.1.role":"FUNDADOR Y MECÁNICO JEFE","team.1.bio":"El mecani-gato original. Especialista en sistemas de cambios y miradas existenciales. Nunca perdió un tornillo. Sí perdió varios ratones.","team.2.role":"ESPECIALISTA EN FRENOS","team.2.bio":"Ex académico reconvertido en mago de las bicicletas. El primero de su clase.","team.3.role":"RELACIONES CON CLIENTES Y RUEDAS","team.3.bio":"La cara de Kitty's BFS. Habla 4 dialectos de maullido. Una vez arregló un pinchazo mientras dormía la siesta. Aún no sabemos cómo.","team.4.role":"CEO Y DURMIENTE ESTRATÉGICO","team.4.bio":"Toma todas las decisiones importantes desde su almohadón ejecutivo. Aprueba cada reparación con un parpadeo lento. Casi nunca se equivoca.","team.5.role":"APRENDIZ DE MECÁNICO","team.5.bio":"El miembro más nuevo del equipo. Todavía aprendiendo, pero ya muestra un talento increíble.","team.6.role":"OFICIAL DE MORAL Y MÚSICA","team.6.bio":"Mantiene el ambiente del taller en su punto más alto. Cree firmemente que las bicis se reparan más rápido con lo-fi de fondo.","val1.title":"Rápidos como los zoomies","val1.desc":"Trabajamos a velocidad zoomie máxima. Tu bici no va a esperar mientras siestamos. Bueno, un poquito. Pero después somos muy rápidos.","val2.title":"Calidad Purrfecta","val2.desc":"No entregamos una bici hasta que pase la Inspección Whiskers™ — un riguroso olfateo seguido de 3 segundos de mirada de aprobación.","val3.title":"Vamos a donde estés","val3.desc":"Sin arrastrar tu bici por la ciudad. Aparecemos en tu puerta, arreglamos todo y nos vamos sin tirar nada de tu estante. Generalmente.","cta.subtitle":"Dejá que nuestros mecani-gatos se encarguen de tu bici. Sin estrés. Sin complicaciones. Solo motores ronroneando y ruedas suaves.","cta.btn":"¡Reservar un Servicio Ahora!"},
+            lolcat: {"nav.home":"HOMEZ","nav.about":"ABOUTZ UZ","nav.contact":"MEOW US","nav.reserve":"RESERVEZ SERVIS ▾","nav.onsite":"Onsite Servis","nav.parts":"Parts Deliveryz","nav.callback":"Request Cullbackz","hero.eyebrow":"OUR STOREE","hero.title":"Abowt Kitty's BFS","story.eyebrow":"HOW IT ALL STARTD","story.p1":"It all startd in 2019 wen Kitty Whiskers Jpeg — a straey tabby wif an unuzhual talent 4 tytening boltz — wandrd into an abandondd garaj on da east sied of town. Nobody noes how she lernd 2 uze toolz. Sum say he watchd YouTube tutorialz. Otherz say he waz jus born wif it.","story.p2":"Werd spred fast. By 2021, Whiskers had rekrootd a full crew of mechani-catz, n Kitty's BFS waz offishully born. No appointment needid — dey comez 2 u, anywherz, anytiem (aftr nap tiem).","story.p3":"2day we iz da mozt purrfesshunal mobiel bike repayr servis in da sitee. Our seekret? We genuinlee luv bikez. N tuna. But moztlee bikez.","stat1":"Bikez Fixd","stat2":"Mechani-Catz","stat3":"Averaj Ratin","stat4":"Bikez Leeft Unfinizhd","team.subtitle":"Highlee traind. Verry fluffy. Ekstreemlee profeshunal.","team.1.role":"FOUNDR & HED MECHANIC","team.1.bio":"Da orijinal mechani-cat. Speshalizez in geer sistemz n egzistenshul staring. Haz nevr lost a bolt. Haz lost several miez.","team.2.role":"BRAEK SPESHALIST","team.2.bio":"Formr akademik turnd bike wizrd. Top of hiz klass.","team.3.role":"CUSTOMR RELASHUNZ & WHEELZ","team.3.bio":"Da faes of Kitty's BFS. Fluent in 4 meow dialektz. Wunce fixd a flat tyre wile simulTaneusly nappin.","team.4.role":"CEO & STRATEJIK NAPPR","team.4.bio":"Handlez all major bizniss desishunz from hiz ekzekutiv cushun. Apruves evry repayr wif a slow blink. Rairlee rong.","team.5.role":"APRENTIS MECHANIC","team.5.bio":"Da newest membr of da crew. Stil lernin, but alredy showz inkredibl promis.","team.6.role":"MORALE OFFISUR & MUZIK","team.6.bio":"Keepz da wurkshup atmosfeer top notch. Stronglee beleevz bikez r repaird fastr wif lo-fi muzik playin.","val1.title":"Fasst as a Zoomie","val1.desc":"We wurk at full zoomie speed. Ur bike wont wait around wile we nap. Well, maebe a litle. But den we r verry fasst.","val2.title":"Purrfect Qualitee","val2.desc":"We dont delivr a bike until it pasez da Whiskers Inspekshun™ — a rigurus snif test folloed by a 3-sekund stare of aprooval.","val3.title":"We Comez 2 U","val3.desc":"No draggin ur bike akross da sitee. We show up at ur door, fix evryting, n leev wifout knockin anyting off ur shelf. Uzually.","cta.subtitle":"Let our mechani-catz taek care of ur bike. No stres. No hassl. Jus purring injenz n smooth wheelz.","cta.btn":"Reservez Servis Now!"}
+        };
+
+        const htmlOverrides = {
+            "story.title": { en: 'A <span>cat</span> with a wrench and a dream.', es: 'Un <span>gato</span> con una llave inglesa y un sueño.', lolcat: 'A <span>kitteh</span> wif a wrench n a dreem.' },
+            "team.title": { en: 'Meet the <span>Crew</span>', es: 'Conocé al <span>Equipo</span>', lolcat: 'Meet da <span>Crew</span>' },
+            "values.title": { en: 'Our <span>Values</span>', es: 'Nuestros <span>Valores</span>', lolcat: 'Our <span>Valuez</span>' },
+            "cta.title": { en: 'Ready to ride? 🐾', es: '¿Listo para pedalear? 🐾', lolcat: 'Reddy 2 ride? 🐾' }
+        };
+
+        function setLang(lang) { applyLang(lang, translations, htmlOverrides); }
+
+        // ── COUNTER ANIMATION ──/*  */
+        function animateCount(el) {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1200;
+            const steps = 40;
+            const increment = target / steps;
+            let current = 0;
+            let step = 0;
+
+            el.style.transform = 'scale(1.1)';
+            setTimeout(() => el.style.transform = 'scale(1)', 200);
+
+            const timer = setInterval(() => {
+                step++;
+                current = Math.min(Math.round(increment * step), target);
+                el.textContent = current.toLocaleString() + suffix;
+                if (step >= steps) clearInterval(timer);
+            }, duration / steps);
+        }
+
+        function triggerCount(card) {
+            const numEl = card.querySelector('.stat-number');
+            animateCount(numEl);
+        }
+
+        // Auto-trigger counters when they enter viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numEl = entry.target.querySelector('.stat-number');
+                    animateCount(numEl);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
+
+        setLang(getSavedLang());
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mainNav.classList.toggle('open');
+        });
+
+        // Mobile: toggle dropdowns on click
+        document.querySelectorAll('.navbutton > a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const navbutton = link.parentElement;
+                const dropdown = navbutton.querySelector('.dropdown');
+                if (dropdown && window.innerWidth <= 900) {
+                    e.preventDefault();
+                    navbutton.classList.toggle('open');
+                }
+            });
+        });
+
+        // Mobile: toggle lang switcher on click
+        document.querySelector('.lang-btn').addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                document.querySelector('.lang-switcher').classList.toggle('open');
+            }
+        });
+    </script>
+</body>
+</html>

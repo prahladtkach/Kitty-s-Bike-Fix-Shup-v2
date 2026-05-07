@@ -1,5 +1,5 @@
 .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background-image: url('taller.png'); background-size: cover; background-position: center; background-attachment: fixed; transform: scale(1.05); }
+.hero-bg { position: absolute; inset: 0; background-image: url('imageswebp/taller.webp'); background-size: cover; background-position: center; background-attachment: fixed; transform: scale(1.05); }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,40,0.75) 0%, rgba(0,0,30,0.85) 60%, rgba(0,0,20,1) 100%); }
 .hero-content { position: relative; z-index: 2; text-align: center; padding: 20px; max-width: 800px; animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .hero-logo { width: 140px; height: auto; filter: brightness(0) invert(1); margin-bottom: 24px; animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: 0.1s; opacity: 0; }
@@ -16,9 +16,9 @@
 .card1, .card2, .card3 { flex: 1; padding: 30px 20px; background-size: cover; background-position: center; border-radius: 16px; min-height: 320px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center; }
 .card1:hover, .card2:hover, .card3:hover { transform: translateY(-6px); box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
 .card1::before, .card2::before, .card3::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,40,0.85) 0%, rgba(0,0,20,0.4) 100%); border-radius: 16px; }
-.card1 { background-image: url(public/BikeCardImg.png); }
-.card2 { background-image: url(public/BikeCardImg2.png); }
-.card3 { background-image: url(public/BikeCardImg3.jpg); }
+.card1 { background-image: url(imageswebp/BikeCardImg.webp); }
+.card2 { background-image: url(imageswebp/BikeCardImg2.webp); }
+.card3 { background-image: url(imageswebp/BikeCardImg3.webp); }
 .card1 a, .card2 a, .card3 a { position: relative; z-index: 2; text-decoration: none; color: white; display: flex; flex-direction: column; align-items: center; height: 100%; }
 .card1 a:hover, .card2 a:hover, .card3 a:hover { color: var(--accent); }
 .cards svg { width: 80px; height: auto; margin-bottom: 16px; }
